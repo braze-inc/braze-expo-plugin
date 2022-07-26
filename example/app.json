@@ -1,0 +1,54 @@
+{
+  "expo": {
+    "name": "braze-expo-example",
+    "slug": "braze-expo-example",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.braze.expoexample"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "permissions": [
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.INTERNET"
+      ],
+      "package": "com.braze.expoexample"
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      [
+        "@braze/expo-plugin",
+        {
+          "apiKey": "d0555d14-3491-4141-a9f0-ffb83e3c2a2f",
+          "customEndpoint": "sondheim.braze.com",
+          "enableSdkAuthentication": true,
+          "logLevel": 8,
+          "enableGeofence": true,
+          "dismissModalOnOutsideTap": true,
+          "minimumTriggerIntervalInSeconds": 0
+        }
+      ]
+    ]
+  }
+}
