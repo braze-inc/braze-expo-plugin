@@ -20,12 +20,7 @@
   "homepage": "https://github.com/braze-inc/braze-expo-plugin#readme",
   "scripts": {
     "build": "expo-module build",
-    "clean": "expo-module clean",
-    "lint": "expo-module lint",
-    "test": "expo-module test",
-    "prepare": "expo-module prepare",
-    "prepublishOnly": "expo-module prepublishOnly",
-    "expo-module": "expo-module"
+    "clean": "expo-module clean"
   },
   "keywords": [
     "react",
