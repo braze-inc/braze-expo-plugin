@@ -40,7 +40,8 @@
       [
         "@braze/expo-plugin",
         {
-          "apiKey": "d0555d14-3491-4141-a9f0-ffb83e3c2a2f",
+          "androidApiKey": "8220f3a6-2e82-4737-a83a-aab39eb1bcef",
+          "iosApiKey": "d0555d14-3491-4141-a9f0-ffb83e3c2a2f",
           "customEndpoint": "sondheim.braze.com",
           "enableSdkAuthentication": true,
           "logLevel": 8,

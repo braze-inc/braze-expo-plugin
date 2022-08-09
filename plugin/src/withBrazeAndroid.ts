@@ -21,7 +21,7 @@ const BX_STR = "string";
 const BX_INT = "integer";
 const BX_BOOL = "bool";
 const ANDROID_CONFIG_MAP = {
-  "apiKey": ["com_braze_api_key", BX_STR],
+  "androidApiKey": ["com_braze_api_key", BX_STR],
   "customEndpoint": ["com_braze_custom_endpoint", BX_STR],
   "fcmSenderID": ["com_braze_firebase_cloud_messaging_sender_id", BX_STR],
 

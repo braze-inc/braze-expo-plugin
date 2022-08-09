@@ -1,5 +1,6 @@
 export type ConfigProps = {
-  apiKey: string;
+  androidApiKey: string;
+  iosApiKey: string;
   customEndpoint: string;
   fcmSenderID?: string;
   sessionTimeout?: number;
