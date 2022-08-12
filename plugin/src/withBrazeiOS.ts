@@ -12,11 +12,11 @@ export const withIOSBrazeSdk: ConfigPlugin<ConfigProps> = (config, props) => {
   config = withStaticFrameworks(config);
   config = withInfoPlist(config, (config) => {
     delete config.modResults.Braze;
-    const { iosApiKey, customEndpoint } = props;
+    const { iosApiKey, baseUrl } = props;
     if (iosApiKey) {
       config.modResults.Braze = {
         ApiKey: iosApiKey,
-        Endpoint: customEndpoint,
+        Endpoint: baseUrl,
       };
 
       if (props.sessionTimeout != null) {

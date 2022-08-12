@@ -11,7 +11,7 @@ const withBraze: ConfigPlugin<ConfigProps> = (
   config,
   _props
 ) => {
-  const props = _props || { androidApiKey: "", iosApiKey: "", customEndpoint: "" };
+  const props = _props || { androidApiKey: "", iosApiKey: "", baseUrl: "" };
 
   config = withAndroidBrazeSdk(config, props);
   config = withIOSBrazeSdk(config, props);

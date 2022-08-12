@@ -22,12 +22,12 @@ const BX_INT = "integer";
 const BX_BOOL = "bool";
 const ANDROID_CONFIG_MAP = {
   "androidApiKey": ["com_braze_api_key", BX_STR],
-  "customEndpoint": ["com_braze_custom_endpoint", BX_STR],
+  "baseUrl": ["com_braze_custom_endpoint", BX_STR],
   "fcmSenderID": ["com_braze_firebase_cloud_messaging_sender_id", BX_STR],
 
   "sessionTimeout": ["com_braze_session_timeout", BX_INT],
   "logLevel": ["com_braze_logger_initial_log_level", BX_INT],
-  "minimumTriggerIntervalInSeconds": ["minimumTriggerIntervalInSeconds", BX_INT],
+  "minimumTriggerIntervalInSeconds": ["com_braze_trigger_action_minimum_time_interval_seconds", BX_INT],
 
   "enableSdkAuthentication": ["com_braze_sdk_authentication_enabled", BX_BOOL],
   "enableGeofence": ["com_braze_geofences_enabled", BX_BOOL],
