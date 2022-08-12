@@ -1,10 +1,12 @@
+# 0.3.1
+
+##### Fixed
+- Fixed an issue where the `minimumTriggerIntervalInSeconds` prop did not work as expected on Android.
+
 # 0.3.0
 
 ##### ⚠ Breaking
 - Renamed `customEndpoint` to `baseUrl`.
-
-##### Fixed
-- Fixed an issue where the `minimumTriggerIntervalInSeconds` prop did not work as expected on Android.
 
 # 0.2.0
 
