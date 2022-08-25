@@ -11,11 +11,13 @@ buildscript {
   }
 
   repositories {
+    google()
     mavenCentral()
   }
 
   dependencies {
     classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${safeExtGet('kotlinVersion', '1.6.0')}")
+    classpath 'com.google.gms:google-services:4.3.4'
   }
 }
 
@@ -48,5 +50,6 @@ dependencies {
 
   //noinspection GradleDynamicVersion
   implementation 'com.facebook.react:react-native:+'
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${safeExtGet('kotlinVersion', '1.6.0')}"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:${safeExtGet('kotlinVersion', '1.6.0')}"
 }
+

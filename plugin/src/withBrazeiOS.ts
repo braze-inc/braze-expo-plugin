@@ -51,6 +51,10 @@ export const withIOSBrazeSdk: ConfigPlugin<ConfigProps> = (config, props) => {
       if (props.dismissModalOnOutsideTap != null) {
         config.modResults.Braze.DismissModalOnOutsideTap = props.dismissModalOnOutsideTap;
       }
+
+      if (props.enableBrazeIosPush != null) {
+        config.modResults.Braze.UseBrazePush = props.enableBrazeIosPush;
+      }
     }
 
     return config;

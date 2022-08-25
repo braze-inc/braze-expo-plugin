@@ -9,7 +9,7 @@ public class BrazeAppDelegate: ExpoAppDelegateSubscriber {
       var appboyOptions: [AnyHashable: Any] = [:]
 
       if let endpoint = plistConfig["Endpoint"] as? String {
-        appboyOptions[ABKEndpointKey] = plistConfig
+        appboyOptions[ABKEndpointKey] = endpoint
       }
 
       if let sessionTimeout = plistConfig["SessionTimeout"] as? Int {
@@ -45,6 +45,13 @@ public class BrazeAppDelegate: ExpoAppDelegateSubscriber {
       }
 
       Appboy.start(withApiKey: apiKey, in:application, withLaunchOptions:launchOptions, withAppboyOptions:appboyOptions)
+
+      if let useBrazePush = plistConfig["UseBrazePush"] as? Bool, useBrazePush {
+        application.registerForRemoteNotifications()
+        let center = UNUserNotificationCenter.current()
+        center.setNotificationCategories(ABKPushUtils.getAppboyUNNotificationCategorySet())
+        center.delegate = self
+      }
     }
 
     return true
@@ -59,16 +66,36 @@ public class BrazeAppDelegate: ExpoAppDelegateSubscriber {
     didReceiveRemoteNotification userInfo: [AnyHashable: Any],
     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
   ) {
-    Appboy.sharedInstance()?.register(application,
-          didReceiveRemoteNotification: userInfo,
-                fetchCompletionHandler: completionHandler)
+    Appboy.sharedInstance()?.register(
+      application,
+      didReceiveRemoteNotification: userInfo,
+      fetchCompletionHandler: completionHandler
+    )
+  }
+}
+
+extension BrazeAppDelegate: UNUserNotificationCenterDelegate {
+  public func userNotificationCenter(
+    _ center: UNUserNotificationCenter,
+    didReceive response: UNNotificationResponse,
+    withCompletionHandler completionHandler: @escaping () -> Void
+  ) {
+    Appboy.sharedInstance()?.userNotificationCenter(
+      center,
+      didReceive: response,
+      withCompletionHandler: completionHandler
+    )
   }
 
-  // public func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-  //   return false
-  // }
-
-  // public func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-  //   return false
-  // }
+  public func userNotificationCenter(
+    _ center: UNUserNotificationCenter,
+    willPresent notification: UNNotification,
+    withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+  ) {
+    if #available(iOS 14.0, *) {
+      completionHandler([.list, .banner])
+    } else {
+      completionHandler(.alert)
+    }
+  }
 }

@@ -4,9 +4,6 @@ import { withAndroidBrazeSdk } from "./withBrazeAndroid";
 import { withIOSBrazeSdk } from "./withBrazeiOS";
 import { ConfigProps } from './types';
 
-/**
- * Apply react-native-appboy-sdk configuration for Expo SDK 42 projects.
- */
 const withBraze: ConfigPlugin<ConfigProps> = (
   config,
   _props

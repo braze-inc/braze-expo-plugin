@@ -41,13 +41,16 @@
         "@braze/expo-plugin",
         {
           "androidApiKey": "8220f3a6-2e82-4737-a83a-aab39eb1bcef",
-          "iosApiKey": "d0555d14-3491-4141-a9f0-ffb83e3c2a2f",
+          "iosApiKey": "e1527f34-f46d-4bf5-8aab-e7e548057057",
           "baseUrl": "sondheim.braze.com",
           "enableSdkAuthentication": true,
-          "logLevel": 8,
+          "logLevel": 0,
           "enableGeofence": true,
           "dismissModalOnOutsideTap": true,
-          "minimumTriggerIntervalInSeconds": 0
+          "minimumTriggerIntervalInSeconds": 0,
+          "enableBrazeIosPush": true,
+          "enableFirebaseCloudMessaging": true,
+          "firebaseCloudMessagingSenderId": "531790618696"
         }
       ]
     ]

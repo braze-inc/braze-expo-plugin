@@ -1074,7 +1074,7 @@
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
 "@braze/expo-plugin@file:../plugin":
-  version "0.1.0"
+  version "0.4.0"
   dependencies:
     "@expo/config-plugins" "^4.1.0"
 
@@ -6893,10 +6893,10 @@ react-is@^16.13.0, react-is@^16.13.1:
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-native-appboy-sdk@^1.37.0:
-  version "1.37.0"
-  resolved "https://registry.npmjs.org/react-native-appboy-sdk/-/react-native-appboy-sdk-1.37.0.tgz#98784ae3f92c7d2b9071aa9b4ddfec66b6d5111f"
-  integrity sha512-BtJJ0C4OpRcr/l0t97z4epwGJw8DYrlYLtQDpW9JMsNLny17ydmg/hYxqDC91mhcgVODaYndS/TIXcR2CffX4Q==
+react-native-appboy-sdk@^1.38.0:
+  version "1.38.0"
+  resolved "https://artifactory.infra.braze.com/artifactory/api/npm/npm-proxy/react-native-appboy-sdk/-/react-native-appboy-sdk-1.38.0.tgz#24c674e7e4c376849181f02b9c5fa6f2a39877e7"
+  integrity sha512-eqxWMmr3cwu3Z3zbykirOUyeqBKlLF6KipvD01pEYGKZbC2Pf0vJOd58uG5IOScfus/maxM/uMe05wnkJ1gUZA==
 
 react-native-codegen@^0.0.17:
   version "0.0.17"

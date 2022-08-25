@@ -2,7 +2,6 @@ export type ConfigProps = {
   androidApiKey: string;
   iosApiKey: string;
   baseUrl: string;
-  fcmSenderID?: string;
   sessionTimeout?: number;
   enableSdkAuthentication?: boolean;
   logLevel?: number;
@@ -11,4 +10,7 @@ export type ConfigProps = {
   enableAutomaticLocationCollection?: boolean;
   enableAutomaticGeofenceRequests?: boolean;
   dismissModalOnOutsideTap?: boolean;
+  enableBrazeIosPush?: boolean;
+  enableFirebaseCloudMessaging?: boolean;
+  firebaseCloudMessagingSenderId?: string;
 };

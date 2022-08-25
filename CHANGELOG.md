@@ -1,3 +1,11 @@
+# 0.4.0
+
+##### ⚠ Breaking
+- Renamed the prop `fcmSenderID` to `firebaseCloudMessagingSenderId`.
+
+##### Added
+- Added support for Android and iOS push.
+
 # 0.3.1
 
 ##### Fixed
