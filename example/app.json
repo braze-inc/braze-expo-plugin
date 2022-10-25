@@ -50,6 +50,7 @@
           "minimumTriggerIntervalInSeconds": 0,
           "enableBrazeIosPush": true,
           "enableFirebaseCloudMessaging": true,
+          "googleServicesJsonSourcePath": "./assets/google/services.json",
           "firebaseCloudMessagingSenderId": "531790618696"
         }
       ]

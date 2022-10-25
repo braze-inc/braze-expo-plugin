@@ -12,5 +12,6 @@ export type ConfigProps = {
   dismissModalOnOutsideTap?: boolean;
   enableBrazeIosPush?: boolean;
   enableFirebaseCloudMessaging?: boolean;
+  googleServicesJsonSourcePath?: string;
   firebaseCloudMessagingSenderId?: string;
 };

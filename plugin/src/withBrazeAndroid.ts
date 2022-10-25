@@ -169,13 +169,16 @@ export const withAndroidBrazeSdk: ConfigPlugin<ConfigProps> = (config, props) =>
   // If FCM is enabled, then move the 
   // google-services.json file to the app
   if (props.enableFirebaseCloudMessaging) {
+    // Check if google-services.json is in a different location
+    const googleServicesJsonSourcePath = props.googleServicesJsonSourcePath ?? GOOGLE_SERVICES_JSON_EXPECTED_SOURCE_PATH;
+
     // Copy google-services.json
     config = withDangerousMod(config, [
       'android',
       async config => {
         const projectRoot = config.modRequest.projectRoot;
         copyFileOver(
-          resolve(projectRoot, GOOGLE_SERVICES_JSON_EXPECTED_SOURCE_PATH),
+          resolve(projectRoot, googleServicesJsonSourcePath),
           resolve(projectRoot, GOOGLE_SERVICES_JSON_DESTINATION_PATH)
         );
         return config;
