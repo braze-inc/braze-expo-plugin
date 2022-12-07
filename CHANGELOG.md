@@ -1,3 +1,8 @@
+# 0.5.0
+
+##### ⚠ Breaking
+- The iOS deployment target has been changed to 13.0 for compatibility with Expo 47.
+
 # 0.4.0
 
 ##### ⚠ Breaking
