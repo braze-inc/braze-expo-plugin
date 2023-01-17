@@ -44,6 +44,7 @@ const ANDROID_CONFIG_MAP = {
   "enableAutomaticLocationCollection": ["com_braze_enable_location_collection", BX_BOOL],
   "enableAutomaticGeofenceRequests": ["com_braze_automatic_geofence_requests_enabled", BX_BOOL],
   "enableFirebaseCloudMessaging": ["com_braze_firebase_cloud_messaging_registration_enabled", BX_BOOL],
+  "enablingAutomaticDeepLinkOpening": ["com_braze_handle_push_deep_links_automatically", BX_BOOL],
 };
 
 async function appendContentsFromFile(config: any, tag: string, srcFile: string) {

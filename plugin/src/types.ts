@@ -13,4 +13,5 @@ export type ConfigProps = {
   enableBrazeIosPush?: boolean;
   enableFirebaseCloudMessaging?: boolean;
   firebaseCloudMessagingSenderId?: string;
+  enablingAutomaticDeepLinkOpening?: string;
 };
