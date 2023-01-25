@@ -1,3 +1,12 @@
+# 0.6.0
+
+##### ⚠ Breaking
+- The Braze Expo Plugin now requires Expo 47.
+- `google-services.json` is no longer required to be placed in the `assets` folder. The filepath is now set in `app.json` through the [`googleServicesFile`](https://docs.expo.dev/versions/latest/config/app/#googleservicesfile-1) property.
+
+##### Added
+- Added a new configuration prop `androidHandlePushDeepLinksAutomatically` that allows the Braze SDK to automatically handle push deep links on Android.
+
 # 0.5.0
 
 ##### ⚠ Breaking

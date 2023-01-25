@@ -1,4 +1,4 @@
-import { ConfigPlugin, withInfoPlist, withPodfileProperties } from "@expo/config-plugins";
+import { ConfigPlugin, withInfoPlist, withPodfileProperties } from "expo/config-plugins";
 import { ConfigProps } from "./types";
 
 const withStaticFrameworks: ConfigPlugin = (config) => {

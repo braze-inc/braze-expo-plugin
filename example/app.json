@@ -31,7 +31,8 @@
         "android.permission.ACCESS_NETWORK_STATE",
         "android.permission.INTERNET"
       ],
-      "package": "com.braze.expoexample"
+      "package": "com.braze.expoexample",
+      "googleServicesFile": "./assets/google-services.json"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
@@ -40,7 +41,7 @@
       [
         "@braze/expo-plugin",
         {
-          "androidApiKey": "8220f3a6-2e82-4737-a83a-aab39eb1bcef",
+          "androidApiKey": "c131cc0e-92ea-4c35-a1d6-7c2d1adb5907",
           "iosApiKey": "e1527f34-f46d-4bf5-8aab-e7e548057057",
           "baseUrl": "sondheim.braze.com",
           "enableSdkAuthentication": true,
@@ -50,7 +51,18 @@
           "minimumTriggerIntervalInSeconds": 0,
           "enableBrazeIosPush": true,
           "enableFirebaseCloudMessaging": true,
-          "firebaseCloudMessagingSenderId": "531790618696"
+          "firebaseCloudMessagingSenderId": "531790618696",
+          "androidHandlePushDeepLinksAutomatically": true
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 33,
+            "targetSdkVersion": 33,
+            "buildToolsVersion": "33.0.1"
+          }
         }
       ]
     ]
