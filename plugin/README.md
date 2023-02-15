@@ -7,4 +7,4 @@ Effective marketing automation is an essential part of successfully scaling and 
 
 ## About
 
-This Expo Config plugin auto configures the [`Braze React Native SDK`](https://www.npmjs.com/package/react-native-appboy-sdk) when the native code is generated (`expo prebuild`). See the [documentation](https://www.braze.com/docs/developer_guide/platform_integration_guides/react_native/react_sdk_setup/) for details on setup and configuration options.
+This Expo Config plugin auto configures the [`Braze React Native SDK`](https://www.npmjs.com/package/@braze/react-native-sdk) when the native code is generated (`expo prebuild`). See the [documentation](https://www.braze.com/docs/developer_guide/platform_integration_guides/react_native/react_sdk_setup/) for details on setup and configuration options.

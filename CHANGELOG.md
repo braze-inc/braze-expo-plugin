@@ -1,3 +1,8 @@
+# 1.0.0
+
+##### ⚠ Breaking
+- Adds support for Braze React Native SDK v2.0.2+. This version is not backwards compatible with previous versions of Braze React Native SDK.
+
 # 0.6.0
 
 ##### ⚠ Breaking

@@ -35,7 +35,7 @@ body:
   - type: input
     id: sdk_version
     attributes:
-      label: Which react-native-appboy-sdk SDK version?
+      label: Which @braze/react-native-sdk SDK version?
       placeholder: ex. 1.40.0
     validations:
       required: true

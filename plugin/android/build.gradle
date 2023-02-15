@@ -45,7 +45,7 @@ android {
 
 dependencies {
   implementation project(':expo-modules-core')
-  implementation project(':react-native-appboy-sdk')
+  implementation project(':braze_react-native-sdk')
 
   //noinspection GradleDynamicVersion
   implementation 'com.facebook.react:react-native:+'

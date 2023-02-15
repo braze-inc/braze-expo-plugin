@@ -1,4 +1,5 @@
 import { ConfigPlugin, withInfoPlist, withPodfileProperties } from "expo/config-plugins";
+
 import { ConfigProps } from "./types";
 
 const withStaticFrameworks: ConfigPlugin = (config) => {
@@ -6,11 +7,10 @@ const withStaticFrameworks: ConfigPlugin = (config) => {
     config.modResults["ios.useFrameworks"] = "static";
     return config;
   })
-}
+};
 
-export const withIOSBrazeSdk: ConfigPlugin<ConfigProps> = (config, props) => {
-  config = withStaticFrameworks(config);
-  config = withInfoPlist(config, (config) => {
+const withBrazeInfoPlist: ConfigPlugin<ConfigProps> = (config, props) => {
+  return withInfoPlist(config, (config) => {
     delete config.modResults.Braze;
     const { iosApiKey, baseUrl } = props;
     if (iosApiKey) {
@@ -44,8 +44,7 @@ export const withIOSBrazeSdk: ConfigPlugin<ConfigProps> = (config, props) => {
       }
 
       if (props.enableAutomaticGeofenceRequests != null) {
-        // iOS key is `DisableAutomaticGeofenceRequests` so flip the prop value
-        config.modResults.Braze.DisableAutomaticGeofenceRequests = !props.enableAutomaticGeofenceRequests;
+        config.modResults.Braze.EnableAutomaticLocationCollection = props.enableAutomaticGeofenceRequests;
       }
 
       if (props.dismissModalOnOutsideTap != null) {
@@ -59,5 +58,10 @@ export const withIOSBrazeSdk: ConfigPlugin<ConfigProps> = (config, props) => {
 
     return config;
   });
+}
+
+export const withIOSBrazeSdk: ConfigPlugin<ConfigProps> = (config, props) => {
+  withStaticFrameworks(config);
+  withBrazeInfoPlist(config, props);
   return config;
 };

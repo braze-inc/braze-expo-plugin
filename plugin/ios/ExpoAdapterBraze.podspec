@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'ExpoModulesCore'
   s.dependency 'React-Core'
-  s.dependency 'react-native-appboy-sdk'
+  s.dependency 'braze-react-native-sdk'
 
   # Swift/Objective-C compatibility
   s.pod_target_xcconfig = {

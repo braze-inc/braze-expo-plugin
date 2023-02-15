@@ -1,7 +1,7 @@
 {
   "name": "@braze/expo-plugin",
-  "version": "0.6.0",
-  "description": "Config plugin for react-native-appboy-sdk package",
+  "version": "1.0.0",
+  "description": "Config plugin for @braze/react-native-sdk package",
   "main": "build/withBraze.js",
   "types": "build/withBraze.d.ts",
   "sideEffects": false,
@@ -39,7 +39,7 @@
   "dependencies": {},
   "devDependencies": {
     "expo": "^47.0.0",
-    "expo-module-scripts": "^2.0.0"
+    "expo-module-scripts": "^3.0.4"
   },
   "peerDependencies": {
     "expo": "^47.0.0"
@@ -49,5 +49,4 @@
       "optional": true
     }
   }
-
 }
