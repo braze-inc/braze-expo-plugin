@@ -1,6 +1,6 @@
 {
   "name": "@braze/expo-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Config plugin for @braze/react-native-sdk package",
   "main": "build/withBraze.js",
   "types": "build/withBraze.d.ts",

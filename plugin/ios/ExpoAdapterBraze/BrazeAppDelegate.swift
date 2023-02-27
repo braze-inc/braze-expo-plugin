@@ -49,7 +49,7 @@ public class BrazeAppDelegate: ExpoAppDelegateSubscriber {
         if configuration.location.brazeLocationProvider == nil {
           configuration.location.brazeLocationProvider = BrazeLocationProvider()
         }
-        configuration.location.automaticLocationCollection = true
+        configuration.location.automaticLocationCollection = enableAutoLocationCollection
       }
 
       if let enableAutoGeofenceRequests = plistConfig["EnableAutomaticLocationCollection"] as? Bool {

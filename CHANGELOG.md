@@ -1,3 +1,8 @@
+# 1.0.1
+
+##### Fixed
+- Fixes an issue introduced in 1.0.0 where setting `enableAutoLocationCollection` to any value in `app.json` would enable the option on iOS.
+
 # 1.0.0
 
 ##### ⚠ Breaking
