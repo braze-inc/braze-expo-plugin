@@ -18,5 +18,6 @@ This Expo Config plugin auto configures the [`Braze React Native SDK`](https://w
 
 | Braze Expo Plugin | Braze React Native SDK |
 | ----------------- | ---------------------- |
-| >= 1.0.0          | >= 2.0.2               |
+| 1.1.0             | >= 2.1.0               |
+| 1.0.0 - 1.0.1     | >= 2.0.2                  |
 | <= 0.6.0          | 1.38.0 - 1.41.0        |

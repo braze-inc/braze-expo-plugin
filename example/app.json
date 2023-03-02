@@ -32,7 +32,8 @@
         "android.permission.INTERNET"
       ],
       "package": "com.braze.expoexample",
-      "googleServicesFile": "./assets/google-services.json"
+      "googleServicesFile": "./assets/google-services.json",
+      "kotlinVersion": "1.8.10"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
@@ -53,16 +54,6 @@
           "enableFirebaseCloudMessaging": true,
           "firebaseCloudMessagingSenderId": "531790618696",
           "androidHandlePushDeepLinksAutomatically": true
-        }
-      ],
-      [
-        "expo-build-properties",
-        {
-          "android": {
-            "compileSdkVersion": 33,
-            "targetSdkVersion": 33,
-            "buildToolsVersion": "33.0.1"
-          }
         }
       ]
     ]

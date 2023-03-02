@@ -1,16 +1,23 @@
 # Running the application
 
-First, install dependencies and run the `prebuild` command to generate the native files.
+1. From the plugin folder, install dependencies and build the plugin.
+
+```bash
+yarn install
+yarn build
+```
+
+2. Install dependencies and run the `prebuild` command to generate the native files.
 
 ```bash
 yarn install
 expo prebuild
 ```
 
-Then, run on your chosen platform:
+3. Run on your chosen platform:
 
 ```bash
-expo run:ios
+yarn ios
 # or
-expo run:android
+yarn android
 ```

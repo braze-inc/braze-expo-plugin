@@ -13,7 +13,7 @@ buildscript {
         if (findProperty('android.kotlinVersion')) {
             kotlin_version = findProperty('android.kotlinVersion')
         } else {
-            kotlin_version = "1.6.0"
+            kotlin_version = "1.8.10"
         }
     }
   repositories {

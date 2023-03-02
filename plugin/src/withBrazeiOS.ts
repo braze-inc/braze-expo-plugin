@@ -1,13 +1,6 @@
-import { ConfigPlugin, withInfoPlist, withPodfileProperties } from "expo/config-plugins";
+import { ConfigPlugin, withInfoPlist } from "expo/config-plugins";
 
 import { ConfigProps } from "./types";
-
-const withStaticFrameworks: ConfigPlugin = (config) => {
-  return withPodfileProperties(config, async (config) => {
-    config.modResults["ios.useFrameworks"] = "static";
-    return config;
-  })
-};
 
 const withBrazeInfoPlist: ConfigPlugin<ConfigProps> = (config, props) => {
   return withInfoPlist(config, (config) => {
@@ -61,7 +54,6 @@ const withBrazeInfoPlist: ConfigPlugin<ConfigProps> = (config, props) => {
 }
 
 export const withIOSBrazeSdk: ConfigPlugin<ConfigProps> = (config, props) => {
-  withStaticFrameworks(config);
-  withBrazeInfoPlist(config, props);
+  config = withBrazeInfoPlist(config, props);
   return config;
 };

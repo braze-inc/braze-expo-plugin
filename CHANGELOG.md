@@ -1,3 +1,12 @@
+# 1.1.0
+
+##### ⚠ Breaking
+- Now requires Braze React Native SDK v2.1.0+.
+- Updates the default Kotlin version to 1.8.10 for Expo 48 compatibility. This value is overridden by the [`android.kotlinVersion`](https://docs.expo.dev/versions/latest/sdk/build-properties/#pluginconfigtypeandroid) property in `app.json`.
+
+##### Changed
+- No longer requires static linkage of frameworks for iOS.
+
 # 1.0.1
 
 ##### Fixed
