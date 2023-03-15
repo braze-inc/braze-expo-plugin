@@ -67,6 +67,9 @@ public class BrazeAppDelegate: ExpoAppDelegateSubscriber {
       }
 
       configuration.api.addSDKMetadata([.expo])
+
+      BrazeReactUtils.sharedInstance().populateInitialUrl(fromLaunchOptions: launchOptions)
+
       let braze = BrazeReactBridge.perform(#selector(BrazeReactBridge.initBraze(_:)), with: configuration).takeUnretainedValue() as! Braze
       BrazeAppDelegate.braze = braze
 
