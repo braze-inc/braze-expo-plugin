@@ -1,3 +1,8 @@
+# 1.1.1
+
+##### Fixed
+- Fixed an issue where `Braze.getInitialUrl()` could incorrectly return `null`.
+
 # 1.1.0
 
 ##### ⚠ Breaking
@@ -10,7 +15,7 @@
 # 1.0.1
 
 ##### Fixed
-- Fixes an issue introduced in 1.0.0 where setting `enableAutoLocationCollection` to any value in `app.json` would enable the option on iOS.
+- Fixed an issue introduced in 1.0.0 where setting `enableAutoLocationCollection` to any value in `app.json` would enable the option on iOS.
 
 # 1.0.0
 

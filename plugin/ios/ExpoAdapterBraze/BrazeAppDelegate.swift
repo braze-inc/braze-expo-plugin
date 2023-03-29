@@ -70,6 +70,8 @@ public class BrazeAppDelegate: ExpoAppDelegateSubscriber {
       let braze = BrazeReactBridge.perform(#selector(BrazeReactBridge.initBraze(_:)), with: configuration).takeUnretainedValue() as! Braze
       BrazeAppDelegate.braze = braze
 
+      BrazeReactUtils.sharedInstance().populateInitialUrl(fromLaunchOptions: launchOptions)
+
       if let useBrazePush = plistConfig["UseBrazePush"] as? Bool, useBrazePush {
         application.registerForRemoteNotifications()
         let center = UNUserNotificationCenter.current()
@@ -115,6 +117,7 @@ extension BrazeAppDelegate: UNUserNotificationCenterDelegate {
     withCompletionHandler completionHandler: @escaping () -> Void
   ) {
     // Forward user notification to Braze.
+    BrazeReactUtils.sharedInstance().populateInitialUrl(forCategories: response.notification.request.content.userInfo)
     let handledByBraze = BrazeAppDelegate.braze?.notifications.handleUserNotification(
       response: response,
       withCompletionHandler: completionHandler

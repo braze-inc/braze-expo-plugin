@@ -77,7 +77,7 @@ export const BrazeComponent = (): ReactElement => {
     // Handles deep links when an iOS app is launched from hard close via push click.
     // Note that this isn't handled by Linking.getInitialURL(), as the app is
     // launched not from a deep link, but from clicking on the push notification.
-    // For more detail, see `Braze.getInitialURL` in `index.js`.
+    // For more detail, see `Braze.getInitialURL` in the React Native SDK.
     Braze.getInitialURL(url => {
       if (url) {
         console.log('Braze.getInitialURL is ' + url);
