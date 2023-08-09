@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import type { ReactElement } from 'react';
 import {
   StyleSheet,
@@ -11,7 +11,7 @@ import {
   TextInput,
   Platform,
 } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
+import RadioGroup from 'react-native-radio-buttons-group';
 import Braze from '@braze/react-native-sdk';
 
 // Change to `true` to automatically log clicks, button clicks,
@@ -22,25 +22,98 @@ const Space = () => {
   return <View style={styles.spacing} />;
 };
 
-type GenderOptions =
-  | Braze.GenderTypes['MALE']
-  | Braze.GenderTypes['FEMALE']
-  | Braze.GenderTypes['OTHER']
-  | Braze.GenderTypes['PREFER_NOT_TO_SAY']
-  | Braze.GenderTypes['NOT_APPLICABLE']
-  | Braze.GenderTypes['UNKNOWN'];
-
 export const BrazeComponent = (): ReactElement => {
   const [userIdText, setUserIdText] = useState('');
   const [signatureText, setSignatureText] = useState('');
   const [customEventText, setCustomEventText] = useState('');
   const [languageText, setLanguageText] = useState('');
-  const [subscriptionState, setSubscriptionState] = useState<'o' | 'u' | 's'>(
-    's',
-  );
-  const [gender, setGender] = useState<GenderOptions>('m');
+  const [subscriptionState, setSubscriptionState] = useState<string>('s');
+  const [gender, setGender] = useState<string>('m');
   const [message, setMessage] = useState('Success');
   const [toastVisible, setToastVisible] = useState(false);
+  const [, setFeatureFlags] = useState<Braze.FeatureFlag[]>([]);
+  const [featureFlagId, setFeatureFlagId] = useState('');
+  const [featureFlagPropertyType, setFeatureFlagPropertyType] =
+    useState<string>('bool');
+  const [featureFlagPropertyKey, setFeatureFlagPropertyKey] = useState('');
+
+  const subscriptionStateButtons = useMemo(
+    () => [
+      {
+        id: 'o',
+        label: 'Opted In',
+        value: 'o',
+      },
+      {
+        id: 'u',
+        label: 'Unsubscribed',
+        value: 'u',
+      },
+      {
+        id: 's',
+        label: 'Subscribed',
+        value: 's',
+      },
+    ],
+    [],
+  );
+
+  const genderButtons = useMemo(
+    () => [
+      {
+        id: 'f',
+        label: 'Female',
+        value: 'f',
+      },
+      {
+        id: 'm',
+        label: 'Male',
+        value: 'm',
+      },
+      {
+        id: 'o',
+        label: 'Other',
+        value: 'o',
+      },
+      {
+        id: 'p',
+        label: 'Prefer Not to Say',
+        value: 'p',
+      },
+      {
+        id: 'n',
+        label: 'Not Applicable',
+        value: 'n',
+      },
+      {
+        id: 'u',
+        label: 'Unknown',
+        value: 'u',
+      },
+    ],
+    [],
+  );
+
+  const featureFlagPropertyButtons = useMemo(
+    () => [
+      {
+        id: 'bool',
+        label: 'Boolean',
+        value: 'bool',
+      },
+      {
+        id: 'num',
+        label: 'Number',
+        value: 'num',
+      },
+      {
+        id: 'string',
+        label: 'String',
+        value: 'string',
+      },
+    ],
+    [],
+  );
 
   const handleOpenUrl = (event: { url: string }) => {
     console.log('handleOpenUrl called on url ' + event.url);
@@ -77,7 +150,7 @@ export const BrazeComponent = (): ReactElement => {
     // Handles deep links when an iOS app is launched from hard close via push click.
     // Note that this isn't handled by Linking.getInitialURL(), as the app is
     // launched not from a deep link, but from clicking on the push notification.
-    // For more detail, see `Braze.getInitialURL` in the React Native SDK.
+    // For more detail, see `Braze.getInitialURL` in `index.js`.
     Braze.getInitialURL(url => {
       if (url) {
         console.log('Braze.getInitialURL is ' + url);
@@ -87,7 +160,7 @@ export const BrazeComponent = (): ReactElement => {
     });
 
     Braze.subscribeToInAppMessage(true, (event: { inAppMessage: string }) => {
-      let inAppMessage = new Braze.BrazeInAppMessage(event.inAppMessage);
+      const inAppMessage = new Braze.BrazeInAppMessage(event.inAppMessage);
 
       if (automaticallyInteract) {
         console.log(
@@ -102,34 +175,47 @@ export const BrazeComponent = (): ReactElement => {
       console.log(inAppMessage);
     });
 
-    Braze.addListener(
+    const inAppMessageSubscription = Braze.addListener(
       Braze.Events.IN_APP_MESSAGE_RECEIVED,
-      (inAppMessage: Braze.BrazeInAppMessage) => {
+      inAppMessage => {
         console.log('In-App Message Received: ', inAppMessage);
       },
     );
 
-    Braze.addListener(
+    const contentCardsSubscription = Braze.addListener(
       Braze.Events.CONTENT_CARDS_UPDATED,
-      (cardsUpdated: boolean) => {
-        if (cardsUpdated) {
-          console.log('Content Cards Updated.');
-        }
+      data => {
+        const cards = data.cards;
+        console.log(
+          `Received ${cards.length} Content Cards with IDs:`,
+          cards.map(card => card.id),
+        );
       },
     );
 
-    Braze.addListener(
+    const featureFlagsSubscription = Braze.addListener(
+      Braze.Events.FEATURE_FLAGS_UPDATED,
+      flags => {
+        console.log(
+          `Received ${flags.length} Feature Flags with IDs`,
+          flags.map(flag => flag.id),
+        );
+        setFeatureFlags(flags);
+      },
+    );
+
+    const sdkAuthErrorSubscription = Braze.addListener(
       Braze.Events.SDK_AUTHENTICATION_ERROR,
-      (data: Braze.SDKAuthenticationErrorType) => {
+      data => {
         console.log(
           `SDK Authentication for ${data.user_id} failed with error code ${data.error_code}.`,
         );
       },
     );
 
-    Braze.addListener(
+    const pushEventSubscription = Braze.addListener(
       Braze.Events.PUSH_NOTIFICATION_EVENT,
-      function (data: Braze.PushNotificationEvent) {
+      function (data) {
         console.log(`Push Notification event of type ${data.push_event_type} seen.
         Title ${data.title}\n and deeplink ${data.deeplink}`);
         console.log(JSON.stringify(data, undefined, 2));
@@ -138,6 +224,11 @@ export const BrazeComponent = (): ReactElement => {
 
     return () => {
       listener.remove();
+      inAppMessageSubscription.remove();
+      contentCardsSubscription.remove();
+      featureFlagsSubscription.remove();
+      sdkAuthErrorSubscription.remove();
+      pushEventSubscription.remove();
     };
   }, []);
 
@@ -152,7 +243,7 @@ export const BrazeComponent = (): ReactElement => {
   };
 
   const logCustomEventPress = () => {
-    var testDate = new Date();
+    const testDate = new Date();
     Braze.logCustomEvent(`${customEventText}NoProps`);
     Braze.logCustomEvent(customEventText, {
       arrayKey: [
@@ -161,12 +252,16 @@ export const BrazeComponent = (): ReactElement => {
         testDate,
         [testDate, 'nestedArrayval'],
         { dictInArrayKey: testDate },
+        { type: 5 },
+        { type: null },
       ],
       dictKey: {
         dictKey1: 'dictVal1',
         dictKey2: testDate,
         dictKey3: { nestedDictKey1: testDate },
         dictKey4: ['nestedArrayVal1', 'nestedArrayVal2'],
+        dictKey5: { type: false },
+        type: testDate,
       },
     });
     showToast(`Event logged: ${customEventText}`);
@@ -214,31 +309,36 @@ export const BrazeComponent = (): ReactElement => {
 
   const setGenderPress = () => {
     console.log(`Received request to change gender to ${gender}`);
-    Braze.setGender(gender);
     switch (gender) {
-      case Braze.Genders.FEMALE:
+      case 'f':
+        Braze.setGender(Braze.Genders.FEMALE);
         showToast('User gender set to "female"');
         break;
-      case Braze.Genders.MALE:
+      case 'm':
+        Braze.setGender(Braze.Genders.MALE);
         showToast('User gender set to "male"');
         break;
-      case Braze.Genders.NOT_APPLICABLE:
+      case 'n':
+        Braze.setGender(Braze.Genders.NOT_APPLICABLE);
         showToast('User gender set to "not applicable"');
         break;
-      case Braze.Genders.OTHER:
+      case 'o':
+        Braze.setGender(Braze.Genders.OTHER);
         showToast('User gender set to "other"');
         break;
-      case Braze.Genders.PREFER_NOT_TO_SAY:
+      case 'p':
+        Braze.setGender(Braze.Genders.PREFER_NOT_TO_SAY);
         showToast('User gender set to "prefer not to say"');
         break;
-      case Braze.Genders.UNKNOWN:
+      case 'u':
+        Braze.setGender(Braze.Genders.UNKNOWN);
         showToast('User gender set to "unknown"');
         break;
     }
   };
 
   const logPurchasePress = () => {
-    var testDate = new Date();
+    const testDate = new Date();
     Braze.logPurchase('reactProductIdentifier', '1.2', 'USD', 2, {
       stringKey: 'stringValue',
       intKey: 42,
@@ -288,6 +388,11 @@ export const BrazeComponent = (): ReactElement => {
 
   const launchContentCardsPress = () => {
     Braze.launchContentCards();
+  };
+
+  const refreshFeatureFlagsPress = () => {
+    Braze.refreshFeatureFlags();
+    showToast('Feature Flags refresh requested');
   };
 
   const unsetCustomUserAttributePress = () => {
@@ -417,31 +522,24 @@ export const BrazeComponent = (): ReactElement => {
     showToast('Attribution Data Set');
   };
 
-  const getInstallTrackingId = () => {
-    Braze.getInstallTrackingId((err, res) => {
+  const getDeviceId = () => {
+    Braze.getDeviceId((err, res) => {
       if (err) {
-        console.log(`Error getting install tracking ID: ${err}`);
+        console.log(`Error getting device ID: ${err}`);
       } else {
-        showToast(`Install tracking ID: ${res}`);
+        showToast(`Device ID: ${res}`);
       }
     });
   };
 
   const getContentCards = async () => {
-    let cards;
-    try {
-      cards = await Braze.getContentCards();
-    } catch {
-      console.log('Content Cards Promise Rejected');
+    const cards = await Braze.getContentCards();
+    if (cards.length === 0) {
+      console.log('No Content Cards Found.');
       return;
     }
 
-    if (cards == null || cards.length === 0) {
-      console.log('No cached Content Cards Found.');
-      return;
-    }
-
-    console.log(`${cards.length} cached Content Cards found.`);
+    console.log(`${cards.length} Content Cards found.`);
     for (const card of cards) {
       const cardId = card.id;
       console.log(`Got content card: ${JSON.stringify(card)}`);
@@ -449,6 +547,7 @@ export const BrazeComponent = (): ReactElement => {
         console.log('Automatically logging CC click and impression.');
         Braze.logContentCardClicked(cardId);
         Braze.logContentCardImpression(cardId);
+        // Braze.logContentCardDismissed(cardId);
       }
     }
   };
@@ -462,6 +561,67 @@ export const BrazeComponent = (): ReactElement => {
     };
 
     Braze.requestPushPermission(options);
+  };
+
+  const getFeatureFlagsPress = async () => {
+    const featureFlags = await Braze.getAllFeatureFlags();
+    if (featureFlags.length === 0) {
+      console.log('No Feature Flags Found.');
+      return;
+    }
+
+    console.log(JSON.stringify(featureFlags));
+    console.log(
+      `${featureFlags.length} Feature Flags found.`,
+      featureFlags.map(flag => flag.id),
+    );
+  };
+
+  const getFeatureFlagByIdPress = async () => {
+    if (!featureFlagId) {
+      console.log('No Feature Flag ID entered');
+      return;
+    }
+
+    const featureFlag = await Braze.getFeatureFlag(featureFlagId);
+    console.log(`Got Feature Flag: ${JSON.stringify(featureFlag)}`);
+  };
+
+  const getFeatureFlagPropertyPress = async () => {
+    if (!featureFlagId) {
+      console.log('No Feature Flag ID entered');
+      return;
+    }
+
+    if (!featureFlagPropertyKey) {
+      console.log('No Feature Flag property key entered');
+      return;
+    }
+
+    let property;
+    switch (featureFlagPropertyType) {
+      case 'bool':
+        property = await Braze.getFeatureFlagBooleanProperty(
+          featureFlagId,
+          featureFlagPropertyKey,
+        );
+        break;
+      case 'num':
+        property = await Braze.getFeatureFlagNumberProperty(
+          featureFlagId,
+          featureFlagPropertyKey,
+        );
+        break;
+      case 'string':
+        property = await Braze.getFeatureFlagStringProperty(
+          featureFlagId,
+          featureFlagPropertyKey,
+        );
+        break;
+    }
+    console.log(
+      `Got Feature Flag ${featureFlagPropertyType} Property:${property}`,
+    );
   };
 
   return (
@@ -531,32 +691,23 @@ export const BrazeComponent = (): ReactElement => {
       {/* User Attributes */}
 
       <View style={styles.row}>
-        <Picker
-          style={styles.picker}
-          itemStyle={styles.pickerText}
-          selectedValue={subscriptionState}
-          onValueChange={setSubscriptionState}>
-          <Picker.Item label="Subscribed" value="s" />
-          <Picker.Item label="Unsubscribed" value="u" />
-          <Picker.Item label="Opted-in" value="o" />
-        </Picker>
+        <RadioGroup
+          containerStyle={styles.radioGroup}
+          radioButtons={subscriptionStateButtons}
+          selectedId={subscriptionState}
+          onPress={setSubscriptionState}
+        />
         <TouchableHighlight onPress={setSubscriptionStatePress}>
           <Text>Set Subscription State</Text>
         </TouchableHighlight>
       </View>
       <View style={styles.row}>
-        <Picker
-          style={styles.picker}
-          itemStyle={styles.pickerText}
-          selectedValue={gender}
-          onValueChange={setGender}>
-          <Picker.Item label="Female" value="f" />
-          <Picker.Item label="Male" value="m" />
-          <Picker.Item label="Not Applicable" value="n" />
-          <Picker.Item label="Other" value="o" />
-          <Picker.Item label="Prefer Not to Say" value="p" />
-          <Picker.Item label="Unknown" value="u" />
-        </Picker>
+        <RadioGroup
+          containerStyle={styles.radioGroup}
+          radioButtons={genderButtons}
+          selectedId={gender}
+          onPress={setGender}
+        />
         <TouchableHighlight onPress={setGenderPress}>
           <Text>Set Gender</Text>
         </TouchableHighlight>
@@ -593,7 +744,7 @@ export const BrazeComponent = (): ReactElement => {
         <Text>Request Content Cards Refresh</Text>
       </TouchableHighlight>
       <TouchableHighlight onPress={getContentCards}>
-        <Text>Get Cached Content Cards {'&'} Log interactions</Text>
+        <Text>Get Content Cards {'&'} Log interactions</Text>
       </TouchableHighlight>
 
       {/* News Feed */}
@@ -605,6 +756,46 @@ export const BrazeComponent = (): ReactElement => {
       <TouchableHighlight onPress={logNewsFeedInteractions}>
         <Text>Log interactions on News Feed cards</Text>
       </TouchableHighlight>
+
+      {/* Feature Flags */}
+
+      <Space />
+      <TouchableHighlight onPress={refreshFeatureFlagsPress}>
+        <Text>Refresh Feature Flags</Text>
+      </TouchableHighlight>
+      <TouchableHighlight onPress={getFeatureFlagsPress}>
+        <Text>Get All Feature Flags</Text>
+      </TouchableHighlight>
+      <View style={styles.row}>
+        <TextInput
+          style={styles.textInput}
+          autoCorrect={false}
+          autoCapitalize="none"
+          onChangeText={setFeatureFlagId}
+          value={featureFlagId}
+        />
+        <TouchableHighlight onPress={getFeatureFlagByIdPress}>
+          <Text>Get Feature Flag by ID</Text>
+        </TouchableHighlight>
+      </View>
+      <View style={styles.container}>
+        <RadioGroup
+          containerStyle={styles.radioGroup}
+          radioButtons={featureFlagPropertyButtons}
+          selectedId={featureFlagPropertyType}
+          onPress={setFeatureFlagPropertyType}
+        />
+        <TextInput
+          style={styles.textInput}
+          autoCorrect={false}
+          autoCapitalize="none"
+          onChangeText={setFeatureFlagPropertyKey}
+          value={featureFlagPropertyKey}
+        />
+        <TouchableHighlight onPress={getFeatureFlagPropertyPress}>
+          <Text>Get Feature Flag Property</Text>
+        </TouchableHighlight>
+      </View>
 
       {/* Location */}
 
@@ -632,8 +823,8 @@ export const BrazeComponent = (): ReactElement => {
       <TouchableHighlight onPress={setAttributionData}>
         <Text>Set Attribution Data</Text>
       </TouchableHighlight>
-      <TouchableHighlight onPress={getInstallTrackingId}>
-        <Text>Get Install Tracking ID</Text>
+      <TouchableHighlight onPress={getDeviceId}>
+        <Text>Get Device ID</Text>
       </TouchableHighlight>
       <TouchableHighlight onPress={wipeData}>
         <Text>Wipe Data</Text>
@@ -673,11 +864,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  picker: {
+  radioGroup: {
     width: 200,
-  },
-  pickerText: {
-    fontSize: 16,
+    alignItems: 'flex-start',
   },
   toastView: {
     display: 'flex',

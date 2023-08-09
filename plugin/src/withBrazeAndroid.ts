@@ -21,6 +21,8 @@ import {
   BX_STR,
   BX_INT,
   BX_BOOL,
+  BX_DRAWABLE,
+  BX_COLOR,
   ANDROID_CONFIG_MAP
 } from './brazeAndroidConstants'
 
@@ -31,7 +33,9 @@ async function writeBrazeXml(
   const destinationPath = resolve(projectRoot, ANDROID_BRAZE_XML_PATH);
 
   try {
-    let brazeXml = '<?xml version="1.0" encoding="utf-8"?>\n<resources>'
+    let brazeXml = '<?xml version="1.0" encoding="utf-8"?>\n<resources>\n'
+    brazeXml += '<string-array name="com_braze_internal_sdk_metadata">\n<item>GRADLE</item>\n</string-array>\n'
+
     Object.entries(props).forEach(([key, value]) => {
       const mappedConfigInfo = ANDROID_CONFIG_MAP[key as keyof typeof ANDROID_CONFIG_MAP];
       if (value == null || mappedConfigInfo == null) {
@@ -53,6 +57,12 @@ async function writeBrazeXml(
           brazeXml += `<${xmlKeyType} name="${xmlKeyName}">${value}</${xmlKeyType}>`;
           break;
         case BX_BOOL:
+          brazeXml += `<${xmlKeyType} name="${xmlKeyName}">${value}</${xmlKeyType}>`;
+          break;
+        case BX_DRAWABLE:
+          brazeXml += `<${xmlKeyType} name="${xmlKeyName}">${value}</${xmlKeyType}>`;
+          break;
+        case BX_COLOR:
           brazeXml += `<${xmlKeyType} name="${xmlKeyName}">${value}</${xmlKeyType}>`;
           break;
       }

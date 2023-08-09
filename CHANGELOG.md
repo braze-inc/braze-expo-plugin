@@ -1,3 +1,18 @@
+# 1.1.2
+
+##### Added
+- Added Android support for the following configuration fields:
+  - `androidPushNotificationHtmlRenderingEnabled, androidNotificationSmallIcon, androidNotificationLargeIcon, androidNotificationAccentColor`
+- Added support for configuring a fallback Firebase Messaging Service on Android via `androidFirebaseMessagingFallbackServiceEnabled` and `androidFirebaseMessagingFallbackServiceClasspath`.
+  - For example, if your fallback Firebase Messaging Service was `expo.modules.notifications.service.ExpoFirebaseMessagingService`, then your configuration would need to include:
+  ```
+    "androidFirebaseMessagingFallbackServiceEnabled": true,
+    "androidFirebaseMessagingFallbackServiceClasspath": "expo.modules.notifications.service.ExpoFirebaseMessagingService",
+  ```
+  - You can find the proper fallback classpath in your Android merged `AndroidManifest.xml` file.
+- Updated the sample app with version `6.0.1` of the the Braze React Native SDK.
+  - This version demonstrates usage of the New Architecture and the Braze SDK as a Turbo Module.
+
 # 1.1.1
 
 ##### Fixed

@@ -40,10 +40,21 @@
     },
     "plugins": [
       [
+        "expo-build-properties",
+        {
+          "ios": {
+            "newArchEnabled": true
+          },
+          "android": {
+            "newArchEnabled": true
+          }
+        }
+      ],
+      [
         "@braze/expo-plugin",
         {
           "androidApiKey": "c131cc0e-92ea-4c35-a1d6-7c2d1adb5907",
-          "iosApiKey": "e1527f34-f46d-4bf5-8aab-e7e548057057",
+          "iosApiKey": "43a31d1e-c2ac-4412-b473-d0b6b46e2747",
           "baseUrl": "sondheim.braze.com",
           "enableSdkAuthentication": true,
           "logLevel": 0,
@@ -53,7 +64,8 @@
           "enableBrazeIosPush": true,
           "enableFirebaseCloudMessaging": true,
           "firebaseCloudMessagingSenderId": "531790618696",
-          "androidHandlePushDeepLinksAutomatically": true
+          "androidHandlePushDeepLinksAutomatically": true,
+          "androidNotificationAccentColor": "#ff112233"
         }
       ]
     ]

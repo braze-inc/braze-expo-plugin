@@ -47,10 +47,13 @@ export const ANDROID_BRAZE_XML_PATH = './android/app/src/main/res/values/braze.x
 export const BX_STR = "string";
 export const BX_INT = "integer";
 export const BX_BOOL = "bool";
+export const BX_COLOR = "color";
+export const BX_DRAWABLE = "drawable";
 export const ANDROID_CONFIG_MAP = {
   "androidApiKey": ["com_braze_api_key", BX_STR],
   "baseUrl": ["com_braze_custom_endpoint", BX_STR],
   "firebaseCloudMessagingSenderId": ["com_braze_firebase_cloud_messaging_sender_id", BX_STR],
+  "androidFirebaseMessagingFallbackServiceClasspath": ["com_braze_fallback_firebase_cloud_messaging_service_classpath", BX_STR],
 
   "sessionTimeout": ["com_braze_session_timeout", BX_INT],
   "logLevel": ["com_braze_logger_initial_log_level", BX_INT],
@@ -62,4 +65,11 @@ export const ANDROID_CONFIG_MAP = {
   "enableAutomaticGeofenceRequests": ["com_braze_automatic_geofence_requests_enabled", BX_BOOL],
   "enableFirebaseCloudMessaging": ["com_braze_firebase_cloud_messaging_registration_enabled", BX_BOOL],
   "androidHandlePushDeepLinksAutomatically": ["com_braze_handle_push_deep_links_automatically", BX_BOOL],
+  "androidPushNotificationHtmlRenderingEnabled": ["com_braze_push_notification_html_rendering_enabled", BX_BOOL],
+  "androidFirebaseMessagingFallbackServiceEnabled": ["com_braze_fallback_firebase_cloud_messaging_service_enabled", BX_BOOL],
+
+  "androidNotificationSmallIcon": ["com_braze_push_small_notification_icon", BX_DRAWABLE],
+  "androidNotificationLargeIcon": ["com_braze_push_large_notification_icon", BX_DRAWABLE],
+
+  "androidNotificationAccentColor": ["com_braze_default_notification_accent_color", BX_COLOR],
 };
