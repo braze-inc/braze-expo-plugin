@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import RadioGroup from 'react-native-radio-buttons-group';
 import Braze from '@braze/react-native-sdk';
+import * as Notifications from 'expo-notifications';
 
 // Change to `true` to automatically log clicks, button clicks,
 // and impressions for in-app messages and content cards.
@@ -216,11 +217,19 @@ export const BrazeComponent = (): ReactElement => {
     const pushEventSubscription = Braze.addListener(
       Braze.Events.PUSH_NOTIFICATION_EVENT,
       function (data) {
-        console.log(`Push Notification event of type ${data.push_event_type} seen.
-        Title ${data.title}\n and deeplink ${data.deeplink}`);
+        console.log(`Braze Push Notification event of type ${data.payload_type} seen.
+        Title ${data.title}\n and deeplink ${data.url}`);
         console.log(JSON.stringify(data, undefined, 2));
       },
     );
+
+    const notificationListener = Notifications.addNotificationReceivedListener(notification => {
+      console.log(`expo-notifications addNotificationReceivedListener triggered:\n${notification}`);
+    });
+
+    const responseListener = Notifications.addNotificationResponseReceivedListener(response => {
+      console.log(`expo-notifications addNotificationResponseReceivedListener triggered:\n${response}`);
+    });
 
     return () => {
       listener.remove();
@@ -228,6 +237,8 @@ export const BrazeComponent = (): ReactElement => {
       contentCardsSubscription.remove();
       featureFlagsSubscription.remove();
       sdkAuthErrorSubscription.remove();
+      notificationListener.remove();
+      responseListener.remove();
       pushEventSubscription.remove();
     };
   }, []);

@@ -67,82 +67,23 @@ public class BrazeAppDelegate: ExpoAppDelegateSubscriber {
       }
 
       configuration.api.addSDKMetadata([.expo])
+
+      if let useBrazePush = plistConfig["UseBrazePush"] as? Bool, useBrazePush {
+        configuration.push.automation = true
+        configuration.push.automation.requestAuthorizationAtLaunch = false
+      }
+
+      if let requestAuthorizationAtLaunch = plistConfig["RequestPushPermissionsAutomatically"] as? Bool,
+         requestAuthorizationAtLaunch {
+        configuration.push.automation.requestAuthorizationAtLaunch = true
+      }
+
       let braze = BrazeReactBridge.perform(#selector(BrazeReactBridge.initBraze(_:)), with: configuration).takeUnretainedValue() as! Braze
       BrazeAppDelegate.braze = braze
 
       BrazeReactUtils.sharedInstance().populateInitialUrl(fromLaunchOptions: launchOptions)
-
-      if let useBrazePush = plistConfig["UseBrazePush"] as? Bool, useBrazePush {
-        application.registerForRemoteNotifications()
-        let center = UNUserNotificationCenter.current()
-        center.setNotificationCategories(Braze.Notifications.categories)
-        center.delegate = self
-      }
     }
 
     return true
-  }
-
-  public func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-    BrazeAppDelegate.braze?.notifications.register(deviceToken: deviceToken)
-  }
-
-  public func application(
-    _ application: UIApplication,
-    didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-    fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
-  ) {
-    // Forward background notification to Braze.
-    let handledByBraze = BrazeAppDelegate.braze?.notifications.handleBackgroundNotification(
-      userInfo: userInfo,
-      fetchCompletionHandler: completionHandler
-    ) ?? false
-
-    if handledByBraze {
-      // Braze handled the notification, nothing more to do.
-      return
-    }
-
-    // Braze did not handle this remote background notification.
-    // Manually call the completion handler to let the system know
-    // that the background notification is processed.
-    completionHandler(.noData)
-  }
-}
-
-extension BrazeAppDelegate: UNUserNotificationCenterDelegate {
-  public func userNotificationCenter(
-    _ center: UNUserNotificationCenter,
-    didReceive response: UNNotificationResponse,
-    withCompletionHandler completionHandler: @escaping () -> Void
-  ) {
-    // Forward user notification to Braze.
-    BrazeReactUtils.sharedInstance().populateInitialUrl(forCategories: response.notification.request.content.userInfo)
-    let handledByBraze = BrazeAppDelegate.braze?.notifications.handleUserNotification(
-      response: response,
-      withCompletionHandler: completionHandler
-    ) ?? false
-
-    if handledByBraze {
-      // Braze handled the notification, nothing more to do.
-      return
-    }
-
-    // Braze did not handle this user notification, manually
-    // call the completion handler to let the system know
-    // that the user notification is processed.
-    completionHandler()
-  }
-
-  public func userNotificationCenter(
-    _ center: UNUserNotificationCenter,
-    willPresent notification: UNNotification,
-    withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
-  ) {
-    if #available(iOS 14.0, *) {
-      completionHandler([.list, .banner])
-    } else {
-      completionHandler(.alert)
-    }
   }
 }

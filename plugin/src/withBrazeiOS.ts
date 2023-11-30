@@ -47,6 +47,10 @@ const withBrazeInfoPlist: ConfigPlugin<ConfigProps> = (config, props) => {
       if (props.enableBrazeIosPush != null) {
         config.modResults.Braze.UseBrazePush = props.enableBrazeIosPush;
       }
+
+      if (props.iosRequestPushPermissionsAutomatically != null) {
+        config.modResults.Braze.RequestPushPermissionsAutomatically = props.iosRequestPushPermissionsAutomatically;
+      }
     }
 
     return config;

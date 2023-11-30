@@ -11,6 +11,7 @@ export type ConfigProps = {
   enableAutomaticGeofenceRequests?: boolean;
   dismissModalOnOutsideTap?: boolean;
   enableBrazeIosPush?: boolean;
+  iosRequestPushPermissionsAutomatically?: boolean;
   enableFirebaseCloudMessaging?: boolean;
   firebaseCloudMessagingSenderId?: string;
   androidHandlePushDeepLinksAutomatically?: boolean;

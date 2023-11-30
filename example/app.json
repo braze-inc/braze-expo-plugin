@@ -33,7 +33,8 @@
       ],
       "package": "com.braze.expoexample",
       "googleServicesFile": "./assets/google-services.json",
-      "kotlinVersion": "1.8.10"
+      "kotlinVersion": "1.8.10",
+      "useNextNotificationsApi": true
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
@@ -62,6 +63,7 @@
           "dismissModalOnOutsideTap": true,
           "minimumTriggerIntervalInSeconds": 0,
           "enableBrazeIosPush": true,
+          "iosRequestPushPermissionsAutomatically": true,
           "enableFirebaseCloudMessaging": true,
           "firebaseCloudMessagingSenderId": "531790618696",
           "androidHandlePushDeepLinksAutomatically": true,

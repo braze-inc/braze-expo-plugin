@@ -1,3 +1,10 @@
+# 1.2.0
+
+##### Added
+- Updates the `enableBrazeIosPush` configuration to use the [automatic push handling](https://braze-inc.github.io/braze-swift-sdk/tutorials/braze/b1-standard-push-notifications#Option-1-Automatic-push-notification-handling) features from the Braze Swift SDK.
+  - Starting in version [8.2.0](https://github.com/braze-inc/braze-react-native-sdk/releases/tag/8.2.0) of the Braze React Native SDK, this change allows the Braze Expo plugin to be compatible with incoming iOS notifications from Expo Notifications.
+- Adds the `iosRequestPushPermissionsAutomatically` configuration to control whether iOS push permissions should be requested automatically on app launch.
+
 # 1.1.2
 
 ##### Added
