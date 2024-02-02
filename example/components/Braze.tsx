@@ -160,21 +160,21 @@ export const BrazeComponent = (): ReactElement => {
       }
     });
 
-    Braze.subscribeToInAppMessage(true, (event: { inAppMessage: string }) => {
-      const inAppMessage = new Braze.BrazeInAppMessage(event.inAppMessage);
-
-      if (automaticallyInteract) {
-        console.log(
-          'Automatically logging IAM click, button click `0`, and impression.',
-        );
-        Braze.logInAppMessageClicked(inAppMessage);
-        Braze.logInAppMessageImpression(inAppMessage);
-        Braze.logInAppMessageButtonClicked(inAppMessage, 0);
-      }
-
-      showToast('inAppMessage received in the React layer');
-      console.log(inAppMessage);
-    });
+    Braze.subscribeToInAppMessage(
+      true,
+      (event) => {
+        if (automaticallyInteract) {
+          console.log(
+            'Automatically logging IAM click, button click `0`, and impression.',
+          );
+          Braze.logInAppMessageClicked(event.inAppMessage);
+          Braze.logInAppMessageImpression(event.inAppMessage);
+          Braze.logInAppMessageButtonClicked(event.inAppMessage, 0);
+        }
+        showToast('inAppMessage received in the React layer');
+        console.log(event.inAppMessage);
+      },
+    );
 
     const inAppMessageSubscription = Braze.addListener(
       Braze.Events.IN_APP_MESSAGE_RECEIVED,

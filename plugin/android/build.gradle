@@ -22,14 +22,14 @@ buildscript {
 
 android {
   compileSdkVersion safeExtGet("compileSdkVersion", 34)
+  def agpVersion = com.android.Version.ANDROID_GRADLE_PLUGIN_VERSION
 
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_11
-    targetCompatibility JavaVersion.VERSION_11
-  }
-
-  kotlinOptions {
-    jvmTarget = JavaVersion.VERSION_11
+  // Apply these features only if the Android Gradle Plugin version is 7.0.0 or higher.
+  if (agpVersion.tokenize('.')[0].toInteger() >= 7) {
+    namespace "expo.modules.adapters.braze"
+    buildFeatures {
+      buildConfig true
+    }
   }
 
   defaultConfig {

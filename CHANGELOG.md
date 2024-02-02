@@ -1,8 +1,19 @@
+# 2.0.0
+
+##### Breaking
+- Bumps the iOS minimum platform version to `13.4`, per the [Expo SDK 50 requirements](https://expo.dev/changelog/2024/01-18-sdk-50).
+- This version requires version [8.3.0+](https://github.com/braze-inc/braze-react-native-sdk/releases/tag/8.3.0) of the Braze React Native SDK to fully support Expo SDK 50.
+
+##### Fixed
+- Fixes Android compatibility with [Expo SDK 50](https://expo.dev/changelog/2024/01-18-sdk-50).
+  - This release removes strict dependencies on Java 11 from the `build.gradle` file.
+  - This fix adds namespacing and `buildFeatures.buildConfig` for compatibility with Android Gradle Plugin 8+.
+
 # 1.2.0
 
 ##### Added
 - Updates the `enableBrazeIosPush` configuration to use the [automatic push handling](https://braze-inc.github.io/braze-swift-sdk/tutorials/braze/b1-standard-push-notifications#Option-1-Automatic-push-notification-handling) features from the Braze Swift SDK.
-  - Starting in version [8.2.0](https://github.com/braze-inc/braze-react-native-sdk/releases/tag/8.2.0) of the Braze React Native SDK, this change allows the Braze Expo plugin to be compatible with incoming iOS notifications from Expo Notifications.
+  - This release requires version [8.2.0+](https://github.com/braze-inc/braze-react-native-sdk/releases/tag/8.2.0) of the Braze React Native SDK, this change allows the Braze Expo plugin to be compatible with incoming iOS notifications from Expo Notifications.
 - Adds the `iosRequestPushPermissionsAutomatically` configuration to control whether iOS push permissions should be requested automatically on app launch.
 
 # 1.1.2
