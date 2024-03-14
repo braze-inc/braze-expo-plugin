@@ -78,6 +78,10 @@ public class BrazeAppDelegate: ExpoAppDelegateSubscriber {
         configuration.push.automation.requestAuthorizationAtLaunch = true
       }
 
+      if let pushStoryAppGroup = plistConfig["BrazePushStoryAppGroup"] as? String {
+        configuration.push.appGroup = pushStoryAppGroup
+      }
+
       let braze = BrazeReactBridge.perform(#selector(BrazeReactBridge.initBraze(_:)), with: configuration).takeUnretainedValue() as! Braze
       BrazeAppDelegate.braze = braze
 

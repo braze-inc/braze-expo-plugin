@@ -1,3 +1,11 @@
+# 2.1.0
+
+##### Added
+- Adds support for Rich Push notifications and Push Stories.
+  - Set `enableBrazeIosRichPush` to `true` in your `app.json` to enable Rich Push notifications.
+  - Set `enableBrazeIosPushStories` to `true` and configure your app group name with `iosPushStoryAppGroup` in your `app.json` to enable Push Stories.
+  - For further integration details, refer to the native Swift SDK instructions for [Rich Push Notifications](https://braze-inc.github.io/braze-swift-sdk/tutorials/braze/b2-rich-push-notifications) and [Push Stories](https://braze-inc.github.io/braze-swift-sdk/tutorials/braze/b3-push-stories).
+
 # 2.0.0
 
 ##### Breaking
