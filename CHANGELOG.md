@@ -1,3 +1,8 @@
+# 2.1.1
+
+##### Fixed
+- Tentative fix for code-signing notification extensions on iOS when using Expo Managed Workflow and Expo Application Services (EAS).
+
 # 2.1.0
 
 ##### Added

@@ -111,12 +111,22 @@ const withBrazeXcodeProject: ConfigPlugin<ConfigProps> = (config, props) => {
       const groups = objects['PBXGroup'];
       const xcconfigs = objects['XCBuildConfiguration'];
 
-      // Retrieve Swift version from main target to apply to dependency targets.
+      // Retrieve Swift version and code signing settings from main target to apply to dependency targets.
       let swiftVersion;
+      let codeSignStyle;
+      let codeSignIdentity;
+      let otherCodeSigningFlags;
+      let developmentTeam;
+      let provisioningProfile;
       for (const configUUID of Object.keys(xcconfigs)) {
         const buildSettings = xcconfigs[configUUID].buildSettings;
         if (!swiftVersion && buildSettings && buildSettings.SWIFT_VERSION) {
           swiftVersion = buildSettings.SWIFT_VERSION;
+          codeSignStyle = buildSettings.CODE_SIGN_STYLE;
+          codeSignIdentity = buildSettings.CODE_SIGN_IDENTITY;
+          otherCodeSigningFlags = buildSettings.OTHER_CODE_SIGN_FLAGS;
+          developmentTeam = buildSettings.DEVELOPMENT_TEAM;
+          provisioningProfile = buildSettings.PROVISIONING_PROFILE_SPECIFIER;
           break;
         }
       }
@@ -151,6 +161,11 @@ const withBrazeXcodeProject: ConfigPlugin<ConfigProps> = (config, props) => {
           if (buildSettings && buildSettings.PRODUCT_NAME === `"${BRAZE_IOS_RICH_PUSH_TARGET}"`) {
             buildSettings.SWIFT_VERSION = swiftVersion;
             buildSettings.CODE_SIGN_ENTITLEMENTS = `${BRAZE_IOS_RICH_PUSH_TARGET}/${BRAZE_IOS_RICH_PUSH_TARGET}.entitlements`;
+            if (codeSignStyle) { buildSettings.CODE_SIGN_STYLE = codeSignStyle; }
+            if (codeSignIdentity) { buildSettings.CODE_SIGN_IDENTITY = codeSignIdentity; }
+            if (otherCodeSigningFlags) { buildSettings.OTHER_CODE_SIGN_FLAGS = otherCodeSigningFlags; }
+            if (developmentTeam) { buildSettings.DEVELOPMENT_TEAM = developmentTeam; }
+            if (provisioningProfile) { buildSettings.PROVISIONING_PROFILE_SPECIFIER = provisioningProfile; }
           }
         }
 
@@ -205,6 +220,11 @@ const withBrazeXcodeProject: ConfigPlugin<ConfigProps> = (config, props) => {
             buildSettings.BRAZE_PUSH_STORY_APP_GROUP = props.iosPushStoryAppGroup;
             buildSettings.SWIFT_VERSION = swiftVersion;
             buildSettings.CODE_SIGN_ENTITLEMENTS = `${BRAZE_IOS_PUSH_STORY_TARGET}/${BRAZE_IOS_PUSH_STORY_TARGET}.entitlements`;
+            if (codeSignStyle) { buildSettings.CODE_SIGN_STYLE = codeSignStyle; }
+            if (codeSignIdentity) { buildSettings.CODE_SIGN_IDENTITY = codeSignIdentity; }
+            if (otherCodeSigningFlags) { buildSettings.OTHER_CODE_SIGN_FLAGS = otherCodeSigningFlags; }
+            if (developmentTeam) { buildSettings.DEVELOPMENT_TEAM = developmentTeam; }
+            if (provisioningProfile) { buildSettings.PROVISIONING_PROFILE_SPECIFIER = provisioningProfile; }
           }
         }
 
