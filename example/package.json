@@ -8,7 +8,8 @@
     "web": "npx expo start --web",
     "eject": "npx expo eject",
     "test": "jest --watchAll",
-    "prebuild": "npx expo prebuild --clean"
+    "prebuild": "npx expo prebuild --clean",
+    "eas-build-pre-install": "./hooks/pre-install"
   },
   "jest": {
     "preset": "jest-expo"

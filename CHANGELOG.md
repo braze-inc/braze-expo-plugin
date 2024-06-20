@@ -1,3 +1,8 @@
+# 2.1.2
+
+##### Fixed
+- Fixes the sample app to contain examples on configuring app extension build settings for Expo Application Services (EAS).
+
 # 2.1.1
 
 ##### Fixed

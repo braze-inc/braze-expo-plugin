@@ -73,6 +73,28 @@
           "androidNotificationAccentColor": "#ff112233"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "18227622-e62f-4e6b-a5dc-c82f92c4200d",
+        "build": {
+          "experimental": {
+            "ios": {
+              "appExtensions": [
+                {
+                  "targetName": "BrazeExpoRichPush",
+                  "bundleIdentifier": "com.braze.expoexample.BrazeExpoRichPush"
+                },
+                {
+                  "targetName": "BrazeExpoPushStories",
+                  "bundleIdentifier": "com.braze.expoexample.BrazeExpoPushStories"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "owner": "braze"
   }
 }
