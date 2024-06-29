@@ -123,7 +123,27 @@ export const withAndroidBrazeSdk: ConfigPlugin<ConfigProps> = (config, props) =>
         value: String(props.enableFirebaseCloudMessaging === true),
       },
     ]
-    newProperties.map((gradleProperty) => newConfig.modResults.push(gradleProperty));
+
+    const getProperty = (key: string) => newConfig.modResults.find((prop) => prop.type === "property" && prop.key === key);
+
+    newProperties.forEach((gradleProperty) => {
+      const property = gradleProperty.type === "property" &&  getProperty(gradleProperty.key);
+
+      if(property.type !== "property") {
+       return;
+      }
+      
+      if(!property) {
+        // If property is not available, we add it
+        newConfig.modResults.push(property);
+      } else {
+        // If property is available, update the value
+        if(property.value !== gradleProperty.value) {
+          property.value = gradleProperty.value;
+        }
+      }
+    });
+    
     return newConfig;
   });
 
