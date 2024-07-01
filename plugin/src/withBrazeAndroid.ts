@@ -124,23 +124,17 @@ export const withAndroidBrazeSdk: ConfigPlugin<ConfigProps> = (config, props) =>
       },
     ]
 
-    const getProperty = (key: string) => newConfig.modResults.find((prop) => prop.type === "property" && prop.key === key);
+    const canFindProperty = (key: string) => newConfig.modResults.find((prop) => prop.type === "property" && prop.key === key);
 
-    newProperties.forEach((gradleProperty) => {
-      const property = gradleProperty.type === "property" &&  getProperty(gradleProperty.key);
+    newProperties.map((gradleProperty) => {
+      const property = canFindProperty(gradleProperty.key);
 
-      if(property.type !== "property") {
-       return;
+      if(!property) {
+        return newConfig.modResults.push(gradleProperty);
       }
       
-      if(!property) {
-        // If property is not available, we add it
-        newConfig.modResults.push(property);
-      } else {
-        // If property is available, update the value
-        if(property.value !== gradleProperty.value) {
-          property.value = gradleProperty.value;
-        }
+      if(property.type === 'property' && gradleProperty.type === 'property' &&  property.value !== gradleProperty.value) {
+        property.value = gradleProperty.value;
       }
     });
     
