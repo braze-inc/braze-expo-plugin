@@ -1,3 +1,20 @@
+# 3.0.0
+
+##### Breaking
+- This version requires [`13.1.0`](https://github.com/braze-inc/braze-react-native-sdk/releases/tag/13.1.0) of the Braze React Native SDK.
+- Replaces the iOS `BrazeAppDelegate` method call of `BrazeReactUtils.populateInitialUrl` with `BrazeReactUtils.populateInitialPayload`.
+  - This update resolves an issue where push opened events would not be triggered when clicking on a notification while the application is in a terminated state.
+  - To fully leverage this update, replace all calls of `Braze.getInitialURL` with `Braze.getInitialPushPayload` in your JavaScript code.
+    - The initial URL can now be accessed via the `url` property of the initial push payload.
+
+##### Fixed
+- Fixes the Expo prebuild script to prevent duplicate Braze properties from being added to `gradle.properties`.
+  - Thanks for your contribution, @matinzd!
+
+##### Added
+- Updates the sample app to use [Expo SDK 51](https://expo.dev/changelog/2024/05-07-sdk-51).
+  - There are no known breaking incompatibilities with the Braze Expo plugin or Braze React Native SDK.
+
 # 2.1.2
 
 ##### Fixed

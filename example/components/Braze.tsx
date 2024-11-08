@@ -123,6 +123,19 @@ export const BrazeComponent = (): ReactElement => {
     ]);
   };
 
+  const handlePushPayload = (pushPayload: Braze.PushNotificationEvent) => {
+    if (pushPayload) {
+      console.log(
+        `Received push notification payload:
+          - type: ${pushPayload.payload_type}
+          - title: ${pushPayload.title}
+          - is_silent: ${pushPayload.is_silent}
+          - url: ${pushPayload.url}`,
+      );
+      console.log(JSON.stringify(pushPayload, undefined, 2));
+    }
+  };
+
   const showToast = (msg: string) => {
     setMessage(msg);
     setToastVisible(true);
@@ -148,15 +161,18 @@ export const BrazeComponent = (): ReactElement => {
       })
       .catch(err => console.error('Error getting initial URL', err));
 
-    // Handles deep links when an iOS app is launched from hard close via push click.
-    // Note that this isn't handled by Linking.getInitialURL(), as the app is
-    // launched not from a deep link, but from clicking on the push notification.
-    // For more detail, see `Braze.getInitialURL` in `index.js`.
-    Braze.getInitialURL(url => {
-      if (url) {
-        console.log('Braze.getInitialURL is ' + url);
-        showToast('Braze.getInitialURL is ' + url);
-        handleOpenUrl({ url });
+    // Handles push notification payloads and deep links when an iOS app is launched from terminated state via push click.
+    // For more detail, see `Braze.getInitialPushPayload`.
+    Braze.getInitialPushPayload(pushPayload => {
+      if (pushPayload) {
+        handlePushPayload(pushPayload);
+
+        // If the push payload contains a URL, handle it.
+        let initialURL = pushPayload.url;
+        if (initialURL) {
+          showToast(`Initial URL is: ${initialURL}`);
+          handleOpenUrl({ url: initialURL });
+        }
       }
     });
 
@@ -216,11 +232,7 @@ export const BrazeComponent = (): ReactElement => {
 
     const pushEventSubscription = Braze.addListener(
       Braze.Events.PUSH_NOTIFICATION_EVENT,
-      function (data) {
-        console.log(`Braze Push Notification event of type ${data.payload_type} seen.
-        Title ${data.title}\n and deeplink ${data.url}`);
-        console.log(JSON.stringify(data, undefined, 2));
-      },
+      data => handlePushPayload(data),
     );
 
     const notificationListener = Notifications.addNotificationReceivedListener(notification => {

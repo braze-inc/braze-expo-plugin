@@ -85,7 +85,7 @@ public class BrazeAppDelegate: ExpoAppDelegateSubscriber {
       let braze = BrazeReactBridge.perform(#selector(BrazeReactBridge.initBraze(_:)), with: configuration).takeUnretainedValue() as! Braze
       BrazeAppDelegate.braze = braze
 
-      BrazeReactUtils.sharedInstance().populateInitialUrl(fromLaunchOptions: launchOptions)
+      BrazeReactUtils.sharedInstance().populateInitialPayload(fromLaunchOptions: launchOptions)
     }
 
     return true
