@@ -75,6 +75,10 @@ const withBrazeInfoPlist: ConfigPlugin<ConfigProps> = (config, props) => {
       if (props.iosPushStoryAppGroup != null) {
         config.modResults.Braze.BrazePushStoryAppGroup = props.iosPushStoryAppGroup;
       }
+
+      if (props.useUUIDAsDeviceId != null) {
+        config.modResults.Braze.UseUUIDAsDeviceId = props.useUUIDAsDeviceId;
+      }
     }
 
     return config;
