@@ -1,3 +1,10 @@
+# 3.1.0
+
+##### Added
+- Adds the `iosUseUUIDAsDeviceId` option (default: `true`) to configure the native Swift SDK's device ID. See [`useUUIDAsDeviceId`](https://braze-inc.github.io/braze-swift-sdk/documentation/brazekit/braze/configuration-swift.class/useuuidasdeviceid).
+  - This value determines whether the device ID will be assigned to a randomly generated UUID or, when set to `false`, the device's IDFV.
+  - For more details, refer to [IDFV Collection](https://www.braze.com/docs/developer_guide/analytics/managing_data_collection#idfv-collection).
+
 # 3.0.0
 
 ##### Breaking

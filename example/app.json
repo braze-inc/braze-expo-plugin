@@ -3,6 +3,7 @@
     "name": "braze-expo-example",
     "slug": "braze-expo-example",
     "version": "1.0.0",
+    "newArchEnabled": true,
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -41,17 +42,6 @@
     },
     "plugins": [
       [
-        "expo-build-properties",
-        {
-          "ios": {
-            "newArchEnabled": true
-          },
-          "android": {
-            "newArchEnabled": true
-          }
-        }
-      ],
-      [
         "@braze/expo-plugin",
         {
           "androidApiKey": "c131cc0e-92ea-4c35-a1d6-7c2d1adb5907",
@@ -70,7 +60,8 @@
           "enableFirebaseCloudMessaging": true,
           "firebaseCloudMessagingSenderId": "531790618696",
           "androidHandlePushDeepLinksAutomatically": true,
-          "androidNotificationAccentColor": "#ff112233"
+          "androidNotificationAccentColor": "#ff112233",
+          "iosUseUUIDAsDeviceId": true
         }
       ]
     ],

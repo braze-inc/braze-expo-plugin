@@ -82,6 +82,10 @@ public class BrazeAppDelegate: ExpoAppDelegateSubscriber {
         configuration.push.appGroup = pushStoryAppGroup
       }
 
+      if let useUUIDAsDeviceId = plistConfig["UseUUIDAsDeviceId"] as? Bool {
+        configuration.useUUIDAsDeviceId = useUUIDAsDeviceId
+      }
+
       let braze = BrazeReactBridge.perform(#selector(BrazeReactBridge.initBraze(_:)), with: configuration).takeUnretainedValue() as! Braze
       BrazeAppDelegate.braze = braze
 
