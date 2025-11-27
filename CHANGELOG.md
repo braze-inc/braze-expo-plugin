@@ -1,3 +1,8 @@
+# 3.2.0
+
+##### Added
+- Adds the `iosForwardUniversalLinks` configuration option to specify if the SDK should automatically recognize and forward universal links to the system methods.
+
 # 3.1.0
 
 ##### Added

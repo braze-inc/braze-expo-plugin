@@ -61,7 +61,8 @@
           "firebaseCloudMessagingSenderId": "531790618696",
           "androidHandlePushDeepLinksAutomatically": true,
           "androidNotificationAccentColor": "#ff112233",
-          "iosUseUUIDAsDeviceId": true
+          "iosUseUUIDAsDeviceId": true,
+          "iosForwardUniversalLinks": true
         }
       ]
     ],

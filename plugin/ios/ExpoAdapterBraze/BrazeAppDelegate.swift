@@ -86,6 +86,10 @@ public class BrazeAppDelegate: ExpoAppDelegateSubscriber {
         configuration.useUUIDAsDeviceId = useUUIDAsDeviceId
       }
 
+      if let forwardUniversalLinks = plistConfig["ForwardUniversalLinks"] as? Bool {
+        configuration.forwardUniversalLinks = forwardUniversalLinks
+      }
+
       let braze = BrazeReactBridge.perform(#selector(BrazeReactBridge.initBraze(_:)), with: configuration).takeUnretainedValue() as! Braze
       BrazeAppDelegate.braze = braze
 
