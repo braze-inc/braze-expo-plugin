@@ -79,6 +79,9 @@ const withBrazeInfoPlist: ConfigPlugin<ConfigProps> = (config, props) => {
       if (props.iosUseUUIDAsDeviceId != null) {
         config.modResults.Braze.UseUUIDAsDeviceId = props.iosUseUUIDAsDeviceId;
       }
+      if (props.iosForwardUniversalLinks != null) {
+        config.modResults.Braze.ForwardUniversalLinks = props.iosForwardUniversalLinks;
+      }
     }
 
     return config;

@@ -3,22 +3,52 @@
   <img width="480" src=".github/assets/logo-dark.png#gh-dark-mode-only" />
 </p>
 
-# Braze Expo Plugin
+# Braze Expo Plugin [![latest](https://img.shields.io/github/v/tag/braze-inc/braze-expo-plugin?label=latest%20release&color=300266)](https://github.com/braze-inc/braze-expo-plugin/releases)
 
-Effective marketing automation is an essential part of successfully scaling and managing your business. Braze empowers you to build better customer relationships through a seamless, multi-channel approach that addresses all aspects of the user life cycle. Braze helps you engage your users on an ongoing basis.
+- [Braze User Guide](https://www.braze.com/docs/user_guide/introduction/ "Braze User Guide")
+- [Braze Developer Guide](https://www.braze.com/docs/developer_guide/sdk_integration/?sdktab=react%20native "Braze Developer Guide")
 
-- [Braze Expo plugin on `npm`](https://www.npmjs.com/package/@braze/expo-plugin)
-- [Braze User Guide](https://www.braze.com/docs/user_guide/introduction)
-- [Initial Setup](https://www.braze.com/docs/developer_guide/platform_integration_guides/react_native/react_sdk_setup/)
+## Quickstart
 
-## About
+``` shell
+npm install @braze/react-native-sdk
+npx expo install @braze/expo-plugin
+```
 
-This Expo Config plugin auto configures the [`Braze React Native SDK`](https://www.npmjs.com/package/@braze/react-native-sdk) when the native code is generated (`expo prebuild`). See the [documentation](https://www.braze.com/docs/developer_guide/platform_integration_guides/react_native/react_sdk_setup/) for details on setup and configuration options.
+``` json
+// app.json
+{
+  "expo": {
+    "plugins": [
+      [
+        "@braze/expo-plugin",
+        {
+          "androidApiKey": "YOUR-ANDROID-API-KEY",
+          "iosApiKey": "YOUR-IOS-API-KEY",
+          "baseUrl": "YOUR-SDK-ENDPOINT"
+        }
+      ],
+    ]
+  }
+}
+```
+
+``` shell
+npx expo prebuild
+```
+
+``` typescript
+import Braze from "@braze/react-native-sdk";
+
+Braze.changeUser("Jane Doe")
+```
+
+See [the Braze Developer Guide](https://www.braze.com/docs/developer_guide/sdk_integration/?sdktab=react%20native) for advanced integration options.
 
 ## Version Support
 
 > [!NOTE]
-> This SDK has been tested with Expo version **52.0.41**.
+> This SDK has been tested with Expo version **54.0.8**.
 
 | Braze Expo Plugin | Braze React Native SDK |
 | ----------------- | ---------------------- |
@@ -27,3 +57,7 @@ This Expo Config plugin auto configures the [`Braze React Native SDK`](https://w
 | >=1.1.0           | >= 2.1.0               |
 | 1.0.0 - 1.0.1     | >= 2.0.2               |
 | <= 0.6.0          | 1.38.0 - 1.41.0        |
+
+## Contact
+
+If you have questions, please contact [support@braze.com](mailto:support@braze.com).

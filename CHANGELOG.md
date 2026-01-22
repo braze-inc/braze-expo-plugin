@@ -1,3 +1,11 @@
+# 3.2.0
+
+##### Added
+- Updates the sample app to use [Expo SDK 54](https://expo.dev/changelog/sdk-54).
+  - There are no known breaking incompatibilities with the Braze Expo plugin or Braze React Native SDK.
+- Adds the `forwardUniversalLinks` option (default: `false`) to configure the native Swift SDK handling of universal links. See [`forwardUniversalLinks`](https://braze-inc.github.io/braze-swift-sdk/documentation/brazekit/braze/configuration-swift.class/forwarduniversallinks).
+  - This value determines whether the SDK will automatically recognize and forward universal links to the system methods.
+
 # 3.1.0
 
 ##### Added
