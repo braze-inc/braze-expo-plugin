@@ -14,6 +14,7 @@ import {
 import RadioGroup from 'react-native-radio-buttons-group';
 import Braze from '@braze/react-native-sdk';
 import * as Notifications from 'expo-notifications';
+import * as Location from 'expo-location';
 
 // Change to `true` to automatically log clicks, button clicks,
 // and impressions for in-app messages and content cards.
@@ -169,7 +170,7 @@ export const BrazeComponent = (): ReactElement => {
       })
       .catch(err => console.error('Error getting initial URL', err));
 
-    // Handles push notification payloads and deep links when an iOS app is launched from terminated state via push click.
+    // Handles push notification payloads and deep links when the app is launched from terminated state via push click.
     // For more detail, see `Braze.getInitialPushPayload`.
     Braze.getInitialPushPayload(pushPayload => {
       if (pushPayload) {
@@ -534,6 +535,11 @@ export const BrazeComponent = (): ReactElement => {
   const requestLocationInitialization = () => {
     Braze.requestLocationInitialization();
     showToast('Init Requested');
+  };
+
+  const requestLocationPermissions = () => {
+    Location.requestForegroundPermissionsAsync();
+    showToast('Location Permissions Requested');
   };
 
   // Note that this should normally be called only once per session
@@ -942,6 +948,9 @@ export const BrazeComponent = (): ReactElement => {
       ) : (
         false
       )}
+      <TouchableHighlight onPress={requestLocationPermissions}>
+        <Text>Request Location Permissions</Text>
+      </TouchableHighlight>
       <TouchableHighlight onPress={requestGeofences}>
         <Text>Request Geofences</Text>
       </TouchableHighlight>

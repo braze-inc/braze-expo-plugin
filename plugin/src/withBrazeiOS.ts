@@ -57,7 +57,7 @@ const withBrazeInfoPlist: ConfigPlugin<ConfigProps> = (config, props) => {
       }
 
       if (props.enableAutomaticGeofenceRequests != null) {
-        config.modResults.Braze.EnableAutomaticLocationCollection = props.enableAutomaticGeofenceRequests;
+        config.modResults.Braze.EnableAutomaticGeofenceRequests = props.enableAutomaticGeofenceRequests;
       }
 
       if (props.dismissModalOnOutsideTap != null) {
