@@ -50,6 +50,8 @@
           "enableSdkAuthentication": true,
           "logLevel": 0,
           "enableGeofence": true,
+          "enableAutomaticLocationCollection": true,
+          "enableAutomaticGeofenceRequests": true,
           "dismissModalOnOutsideTap": true,
           "minimumTriggerIntervalInSeconds": 0,
           "enableBrazeIosPush": true,
@@ -63,6 +65,12 @@
           "androidNotificationAccentColor": "#ff112233",
           "iosUseUUIDAsDeviceId": true,
           "iosForwardUniversalLinks": false
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location for tracking and geofences."
         }
       ]
     ],

@@ -954,12 +954,12 @@
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
 "@braze/expo-plugin@file:../plugin":
-  version "3.1.0"
+  version "4.0.0"
 
-"@braze/react-native-sdk@^16.1.0":
-  version "16.1.0"
-  resolved "https://registry.yarnpkg.com/@braze/react-native-sdk/-/react-native-sdk-16.1.0.tgz#d66c838a4eb38d2c5390d3dc4168767d7808a55a"
-  integrity sha512-IUoL+36KELKk4w6tlNdYjJ2fi0QBs2HT+yhYsupwfntvbbKPdSqlKrXU0e/xAyDv34qACcIxl2AYxeeD7Vhptg==
+"@braze/react-native-sdk@^19.0.0":
+  version "19.0.0"
+  resolved "https://registry.yarnpkg.com/@braze/react-native-sdk/-/react-native-sdk-19.0.0.tgz#fbde2156cae6b30e4b0a06e10a37952a0d008e65"
+  integrity sha512-Q5Xv8c07ng93JX4Dd5Xj4omGV35xm1mVQUGJaSD+ZQiVE5gNhX16w8DeQDoKOyKLSf9EoaMjA0k2iiXH3Ta/9w==
 
 "@expo/cli@54.0.6":
   version "54.0.6"
@@ -3575,6 +3575,11 @@ expo-linking@~8.0.8:
   dependencies:
     expo-constants "~18.0.8"
     invariant "^2.2.4"
+
+expo-location@~19.0.8:
+  version "19.0.8"
+  resolved "https://registry.yarnpkg.com/expo-location/-/expo-location-19.0.8.tgz#1805393151b1286021c1ad36246b6fd095d09b55"
+  integrity sha512-H/FI75VuJ1coodJbbMu82pf+Zjess8X8Xkiv9Bv58ZgPKS/2ztjC1YO1/XMcGz7+s9DrbLuMIw22dFuP4HqneA==
 
 expo-modules-autolinking@3.0.11:
   version "3.0.11"

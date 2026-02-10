@@ -1,4 +1,15 @@
-# 3.2.0
+## 4.0.0
+
+##### Breaking 
+- This version requires [`19.0.0`](https://github.com/braze-inc/braze-react-native-sdk/releases/tag/19.0.0) of the Braze React Native SDK.
+  - (Android) Fixed a memory leak in the data persistence layer.
+  - (Android) Adds support for Braze.getInitialPushPayload() to handle push notification deep links when the app is launched from a terminated state. This resolves an issue where deep links from push notifications were not handled on Android when the app was cold started.
+
+##### Fixed
+- Fixes the `enableAutomaticGeofenceRequests` configuration on iOS to be assigned to the correct property.
+  - Previously, this `app.json` configuration would be ignored and only enabled when `enableAutomaticLocationCollection` was `true`.
+
+## 3.2.0
 
 ##### Added
 - Updates the sample app to use [Expo SDK 54](https://expo.dev/changelog/sdk-54).
@@ -6,14 +17,14 @@
 - Adds the `forwardUniversalLinks` option (default: `false`) to configure the native Swift SDK handling of universal links. See [`forwardUniversalLinks`](https://braze-inc.github.io/braze-swift-sdk/documentation/brazekit/braze/configuration-swift.class/forwarduniversallinks).
   - This value determines whether the SDK will automatically recognize and forward universal links to the system methods.
 
-# 3.1.0
+## 3.1.0
 
 ##### Added
 - Adds the `iosUseUUIDAsDeviceId` option (default: `true`) to configure the native Swift SDK's device ID. See [`useUUIDAsDeviceId`](https://braze-inc.github.io/braze-swift-sdk/documentation/brazekit/braze/configuration-swift.class/useuuidasdeviceid).
   - This value determines whether the device ID will be assigned to a randomly generated UUID or, when set to `false`, the device's IDFV.
   - For more details, refer to [IDFV Collection](https://www.braze.com/docs/developer_guide/analytics/managing_data_collection#idfv-collection).
 
-# 3.0.0
+## 3.0.0
 
 ##### Breaking
 - This version requires [`13.1.0`](https://github.com/braze-inc/braze-react-native-sdk/releases/tag/13.1.0) of the Braze React Native SDK.
@@ -30,17 +41,17 @@
 - Updates the sample app to use [Expo SDK 51](https://expo.dev/changelog/2024/05-07-sdk-51).
   - There are no known breaking incompatibilities with the Braze Expo plugin or Braze React Native SDK.
 
-# 2.1.2
+## 2.1.2
 
 ##### Fixed
 - Fixes the sample app to contain examples on configuring app extension build settings for Expo Application Services (EAS).
 
-# 2.1.1
+## 2.1.1
 
 ##### Fixed
 - Tentative fix for code-signing notification extensions on iOS when using Expo Managed Workflow and Expo Application Services (EAS).
 
-# 2.1.0
+## 2.1.0
 
 ##### Added
 - Adds support for Rich Push notifications and Push Stories.
@@ -48,7 +59,7 @@
   - Set `enableBrazeIosPushStories` to `true` and configure your app group name with `iosPushStoryAppGroup` in your `app.json` to enable Push Stories.
   - For further integration details, refer to the native Swift SDK instructions for [Rich Push Notifications](https://braze-inc.github.io/braze-swift-sdk/tutorials/braze/b2-rich-push-notifications) and [Push Stories](https://braze-inc.github.io/braze-swift-sdk/tutorials/braze/b3-push-stories).
 
-# 2.0.0
+## 2.0.0
 
 ##### Breaking
 - Bumps the iOS minimum platform version to `13.4`, per the [Expo SDK 50 requirements](https://expo.dev/changelog/2024/01-18-sdk-50).
@@ -59,14 +70,14 @@
   - This release removes strict dependencies on Java 11 from the `build.gradle` file.
   - This fix adds namespacing and `buildFeatures.buildConfig` for compatibility with Android Gradle Plugin 8+.
 
-# 1.2.0
+## 1.2.0
 
 ##### Added
 - Updates the `enableBrazeIosPush` configuration to use the [automatic push handling](https://braze-inc.github.io/braze-swift-sdk/tutorials/braze/b1-standard-push-notifications#Option-1-Automatic-push-notification-handling) features from the Braze Swift SDK.
   - This release requires version [8.2.0+](https://github.com/braze-inc/braze-react-native-sdk/releases/tag/8.2.0) of the Braze React Native SDK, this change allows the Braze Expo plugin to be compatible with incoming iOS notifications from Expo Notifications.
 - Adds the `iosRequestPushPermissionsAutomatically` configuration to control whether iOS push permissions should be requested automatically on app launch.
 
-# 1.1.2
+## 1.1.2
 
 ##### Added
 - Added Android support for the following configuration fields:
@@ -81,12 +92,12 @@
 - Updated the sample app with version `6.0.1` of the the Braze React Native SDK.
   - This version demonstrates usage of the New Architecture and the Braze SDK as a Turbo Module.
 
-# 1.1.1
+## 1.1.1
 
 ##### Fixed
 - Fixed an issue where `Braze.getInitialUrl()` could incorrectly return `null`.
 
-# 1.1.0
+## 1.1.0
 
 ##### ⚠ Breaking
 - Now requires Braze React Native SDK v2.1.0+.
@@ -95,17 +106,17 @@
 ##### Changed
 - No longer requires static linkage of frameworks for iOS.
 
-# 1.0.1
+## 1.0.1
 
 ##### Fixed
 - Fixed an issue introduced in 1.0.0 where setting `enableAutoLocationCollection` to any value in `app.json` would enable the option on iOS.
 
-# 1.0.0
+## 1.0.0
 
 ##### ⚠ Breaking
 - Adds support for Braze React Native SDK v2.0.2+. This version is not backwards compatible with previous versions of Braze React Native SDK.
 
-# 0.6.0
+## 0.6.0
 
 ##### ⚠ Breaking
 - The Braze Expo Plugin now requires Expo 47.
@@ -114,12 +125,12 @@
 ##### Added
 - Added a new configuration prop `androidHandlePushDeepLinksAutomatically` that allows the Braze SDK to automatically handle push deep links on Android.
 
-# 0.5.0
+## 0.5.0
 
 ##### ⚠ Breaking
 - The iOS deployment target has been changed to 13.0 for compatibility with Expo 47.
 
-# 0.4.0
+## 0.4.0
 
 ##### ⚠ Breaking
 - Renamed the prop `fcmSenderID` to `firebaseCloudMessagingSenderId`.
@@ -127,21 +138,21 @@
 ##### Added
 - Added support for Android and iOS push.
 
-# 0.3.1
+## 0.3.1
 
 ##### Fixed
 - Fixed an issue where the `minimumTriggerIntervalInSeconds` prop did not work as expected on Android.
 
-# 0.3.0
+## 0.3.0
 
 ##### ⚠ Breaking
 - Renamed `customEndpoint` to `baseUrl`.
 
-# 0.2.0
+## 0.2.0
 
 ##### ⚠ Breaking
 - Removed the `apiKey` prop and replaced it with `iosApiKey` and `androidApiKey` parameters, both of which are required.
 
-# 0.1.0
+## 0.1.0
 
 - Initial release with support for in-app messages, content cards, and analytics.

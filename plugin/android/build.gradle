@@ -21,7 +21,7 @@ buildscript {
 }
 
 android {
-  compileSdkVersion safeExtGet("compileSdkVersion", 34)
+  compileSdkVersion safeExtGet("compileSdkVersion", 36)
   def agpVersion = com.android.Version.ANDROID_GRADLE_PLUGIN_VERSION
 
   // Apply these features only if the Android Gradle Plugin version is 7.0.0 or higher.
@@ -34,7 +34,7 @@ android {
 
   defaultConfig {
     minSdkVersion safeExtGet("minSdkVersion", 21)
-    targetSdkVersion safeExtGet("targetSdkVersion", 34)
+    targetSdkVersion safeExtGet("targetSdkVersion", 36)
     versionCode 1
     versionName '1.1.0'
   }
