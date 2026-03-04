@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@braze/expo-plugin": "file:../plugin",
-    "@braze/react-native-sdk": "^19.1.0",
+    "@braze/react-native-sdk": "^19.0.0",
     "@expo/metro-runtime": "^6.1.2",
     "@expo/vector-icons": "^15.0.2",
     "@react-navigation/bottom-tabs": "^7.4.7",
