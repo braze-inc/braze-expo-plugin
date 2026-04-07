@@ -954,12 +954,12 @@
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
 "@braze/expo-plugin@file:../plugin":
-  version "4.0.0"
+  version "5.0.0"
 
-"@braze/react-native-sdk@^19.0.0":
-  version "19.0.0"
-  resolved "https://registry.yarnpkg.com/@braze/react-native-sdk/-/react-native-sdk-19.0.0.tgz#fbde2156cae6b30e4b0a06e10a37952a0d008e65"
-  integrity sha512-Q5Xv8c07ng93JX4Dd5Xj4omGV35xm1mVQUGJaSD+ZQiVE5gNhX16w8DeQDoKOyKLSf9EoaMjA0k2iiXH3Ta/9w==
+"@braze/react-native-sdk@^19.2.0":
+  version "19.2.0"
+  resolved "https://registry.yarnpkg.com/@braze/react-native-sdk/-/react-native-sdk-19.2.0.tgz#a43bd3f807ab4bfd29cd447f5b1806c31a88560e"
+  integrity sha512-Uz7ml2BPhQS+rKW+5MVnpjAnNyARZqfHG0Fw2gu1//Rdez/3UL8hfUMuIlmOpM1zNiw2vlKu7uqx5rLAc74kAQ==
 
 "@expo/cli@54.0.6":
   version "54.0.6"

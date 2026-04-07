@@ -15,6 +15,7 @@ import RadioGroup from 'react-native-radio-buttons-group';
 import Braze from '@braze/react-native-sdk';
 import * as Notifications from 'expo-notifications';
 import * as Location from 'expo-location';
+import { defaultApiKey, defaultEndpoint } from '../constants/brazeConfig';
 
 // Change to `true` to automatically log clicks, button clicks,
 // and impressions for in-app messages and content cards.
@@ -155,6 +156,9 @@ export const BrazeComponent = (): ReactElement => {
   };
 
   useEffect(() => {
+    console.log(`Initializing Braze SDK with API key: ${defaultApiKey} and endpoint: ${defaultEndpoint}`);
+    Braze.initialize(defaultApiKey, defaultEndpoint);
+
     // Listen to the `url` event to handle incoming deep links
     const listener = Linking.addEventListener('url', handleOpenUrl);
 

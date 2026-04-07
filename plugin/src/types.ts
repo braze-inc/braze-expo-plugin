@@ -1,7 +1,17 @@
 export type ConfigProps = {
-  androidApiKey: string;
-  iosApiKey: string;
-  baseUrl: string;
+  /**
+   * @deprecated Set the Android API key at runtime via `Braze.initialize()` instead.
+   */
+  androidApiKey?: string;
+  /**
+   * @deprecated Set the iOS API key at runtime via `Braze.initialize()` instead.
+   */
+  iosApiKey?: string;
+  /**
+   * @deprecated Set the SDK endpoint at runtime via `Braze.initialize()` instead.
+   */
+  baseUrl?: string;
+
   sessionTimeout?: number;
   enableSdkAuthentication?: boolean;
   logLevel?: number;
