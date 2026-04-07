@@ -22,11 +22,7 @@ npx expo install @braze/expo-plugin
     "plugins": [
       [
         "@braze/expo-plugin",
-        {
-          "androidApiKey": "YOUR-ANDROID-API-KEY",
-          "iosApiKey": "YOUR-IOS-API-KEY",
-          "baseUrl": "YOUR-SDK-ENDPOINT"
-        }
+        {}
       ],
     ]
   }
@@ -38,7 +34,16 @@ npx expo prebuild
 ```
 
 ``` typescript
+import { Platform } from "react-native";
 import Braze from "@braze/react-native-sdk";
+
+// Initialize the Braze SDK at runtime with the relevant credentials.
+const apiKey = Platform.select({
+  android: "YOUR-ANDROID-API-KEY",
+  ios: "YOUR-IOS-API-KEY",
+}) ?? "";
+
+Braze.initialize(apiKey, "YOUR-SDK-ENDPOINT");
 
 Braze.changeUser("Jane Doe")
 ```
@@ -52,7 +57,8 @@ See [the Braze Developer Guide](https://www.braze.com/docs/developer_guide/sdk_i
 
 | Braze Expo Plugin | Braze React Native SDK |
 | ----------------- | ---------------------- |
-| >=4.0.0           | >= 19.0.0              |
+| >=5.0.0           | >= 19.2.0              |
+| >=4.0.0           | >= 19.1.0              |
 | >=3.0.0           | >= 13.1.0              |
 | >=2.0.0           | >= 8.3.0               |
 | >=1.1.0           | >= 2.1.0               |

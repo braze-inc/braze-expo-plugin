@@ -36,6 +36,12 @@ async function writeBrazeXml(
     let brazeXml = '<?xml version="1.0" encoding="utf-8"?>\n<resources>\n'
     brazeXml += '<string-array name="com_braze_internal_sdk_metadata">\n<item>GRADLE</item>\n</string-array>\n'
 
+    // Enable delayed initialization when no API key is provided at compile time,
+    // so the SDK waits for JS Braze.initialize(apiKey, endpoint) before starting.
+    if (!props.androidApiKey) {
+      brazeXml += `\n  <${BX_BOOL} name="com_braze_enable_delayed_initialization">true</${BX_BOOL}>`;
+    }
+
     Object.entries(props).forEach(([key, value]) => {
       const mappedConfigInfo = ANDROID_CONFIG_MAP[key as keyof typeof ANDROID_CONFIG_MAP];
       if (value == null || mappedConfigInfo == null) {
@@ -47,6 +53,11 @@ async function writeBrazeXml(
       const xmlKeyName = mappedConfigInfo[0];
       // Should be the `braze.xml` key, such as "string"
       const xmlKeyType = mappedConfigInfo[1];
+
+      // Omit optional string values (e.g. API key, endpoint) when unset so braze.xml does not contain empty <string> entries.
+      if (xmlKeyType === BX_STR && value === "") {
+        return;
+      }
 
       brazeXml += "\n  ";
       switch (xmlKeyType) {

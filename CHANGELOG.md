@@ -1,3 +1,18 @@
+## 5.0.0
+
+##### Breaking
+- This version requires [`19.2.0`](https://github.com/braze-inc/braze-react-native-sdk/releases/tag/19.2.0) of the Braze React Native SDK.
+
+##### Added
+- Adds support for runtime SDK initialization via `Braze.initialize(apiKey, endpoint)` from JavaScript.
+  - On iOS, the Expo adapter now uses `BrazeReactInitializer.configure` for delayed initialization when no compile-time credentials are provided.
+  - On Android, `com_braze_enable_delayed_initialization` is automatically set in `braze.xml` when no compile-time API key is provided.
+- Deprecates the configuration options `androidApiKey`, `iosApiKey`, and `baseUrl` that are used at compile time.
+  - Instead, pass in the relevant credentials at runtime with `Braze.initialize(apiKey, endpoint)`.
+
+##### Fixed
+- Fixes `CFBundleShortVersionString` in Rich Push and Push Stories extension plists to use the correct Xcode build variable (`$(MARKETING_VERSION)`).
+
 ## 4.0.0
 
 ##### Breaking 
