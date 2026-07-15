@@ -3,19 +3,19 @@ import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import useCachedResources from "./hooks/useCachedResources";
-import { BrazeComponent } from "./components/Braze";
+import { BrazeProject } from "./BrazeProject";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
 
   if (!isLoadingComplete) {
     return null;
-  } else {
-    return (
-      <SafeAreaProvider>
-        <BrazeComponent />
-        <StatusBar />
-      </SafeAreaProvider>
-    );
   }
+
+  return (
+    <SafeAreaProvider>
+      <BrazeProject />
+      <StatusBar />
+    </SafeAreaProvider>
+  );
 }

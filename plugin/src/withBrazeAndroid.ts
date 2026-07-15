@@ -23,7 +23,8 @@ import {
   BX_BOOL,
   BX_DRAWABLE,
   BX_COLOR,
-  ANDROID_CONFIG_MAP
+  ANDROID_CONFIG_MAP,
+  ANDROID_INTERNAL_SDK_METADATA
 } from './brazeAndroidConstants'
 
 async function writeBrazeXml(
@@ -34,7 +35,11 @@ async function writeBrazeXml(
 
   try {
     let brazeXml = '<?xml version="1.0" encoding="utf-8"?>\n<resources>\n'
-    brazeXml += '<string-array name="com_braze_internal_sdk_metadata">\n<item>GRADLE</item>\n</string-array>\n'
+    brazeXml += '<string-array name="com_braze_internal_sdk_metadata">\n'
+    ANDROID_INTERNAL_SDK_METADATA.forEach((metadata) => {
+      brazeXml += `<item>${metadata}</item>\n`
+    })
+    brazeXml += '</string-array>\n'
 
     // Enable delayed initialization when no API key is provided at compile time,
     // so the SDK waits for JS Braze.initialize(apiKey, endpoint) before starting.

@@ -22,7 +22,19 @@ const BRAZE_IOS_PUSH_STORY_FILES = [
 const BRAZE_IOS_NOTIFICATION_SERVICE_POD = 'BrazeNotificationService';
 const BRAZE_IOS_PUSH_STORY_POD = 'BrazePushStory';
 
-const withBrazeInfoPlist: ConfigPlugin<ConfigProps> = (config, props) => {
+/**
+ * True when any Braze iOS push integration is enabled. Used to add the
+ * `aps-environment` entitlement so APNs registration works.
+ */
+export function shouldAddIosPushEntitlement(props: ConfigProps): boolean {
+  return (
+    props.enableBrazeIosPush === true ||
+    props.enableBrazeIosRichPush === true ||
+    props.enableBrazeIosPushStories === true
+  );
+}
+
+export const withBrazeInfoPlist: ConfigPlugin<ConfigProps> = (config, props) => {
   return withInfoPlist(config, (config) => {
     delete config.modResults.Braze;
     const { iosApiKey, baseUrl } = props;
@@ -94,7 +106,7 @@ const withBrazeInfoPlist: ConfigPlugin<ConfigProps> = (config, props) => {
   });
 }
 
-const withBrazeEntitlements: ConfigPlugin<ConfigProps> = (config, props) => {
+export const withBrazeEntitlements: ConfigPlugin<ConfigProps> = (config, props) => {
   return withEntitlementsPlist(config, (config) => {
     // Add the app group to the main application target's entitlements.
     if (props.enableBrazeIosPushStories === true && props.iosPushStoryAppGroup != null) {
@@ -106,12 +118,18 @@ const withBrazeEntitlements: ConfigPlugin<ConfigProps> = (config, props) => {
         config.modResults[appGroupsKey] = [props.iosPushStoryAppGroup];
       }
     }
+    // Main app APNs entitlement (same behavior as expo-notifications: default
+    // `development` in the generated plist; set `iosPushEntitlementsMode` for
+    // `production` when required). Never overwrite an existing `aps-environment`.
+    if (shouldAddIosPushEntitlement(props) && !config.modResults['aps-environment']) {
+      config.modResults['aps-environment'] = props.iosPushEntitlementsMode ?? 'development';
+    }
     return config;
   });
 };
 
 // Modify the Xcode project to include the Notification Service Extension and its relevant files.
-const withBrazeXcodeProject: ConfigPlugin<ConfigProps> = (config, props) => {
+export const withBrazeXcodeProject: ConfigPlugin<ConfigProps> = (config, props) => {
   return withXcodeProject(config, (config) => {
 
     if (props.enableBrazeIosRichPush === true || props.enableBrazeIosPushStories === true) {
@@ -269,7 +287,7 @@ const withBrazeXcodeProject: ConfigPlugin<ConfigProps> = (config, props) => {
 
 // Direct modifications to the project files.
 // Used for any operations that can't be contained within direct manipulation of the Xcode project or properties.
-const withBrazeDangerousMod: ConfigPlugin<ConfigProps> = (config, props) => {
+export const withBrazeDangerousMod: ConfigPlugin<ConfigProps> = (config, props) => {
   return withDangerousMod(config, [
     'ios',
     (config) => {

@@ -1,3 +1,8 @@
 # Gradle files
 .gradle/
 build/
+
+# Eclipse / IDE output
+bin/
+.project
+.settings/
