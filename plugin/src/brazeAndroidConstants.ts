@@ -43,6 +43,8 @@ export const BRAZE_SDK_REQUIRED_PERMISSIONS = [
   "android.permission.INTERNET",
 ]
 
+export const ANDROID_INTERNAL_SDK_METADATA = ["GRADLE", "EXPO"] as const;
+
 export const ANDROID_BRAZE_XML_PATH = './android/app/src/main/res/values/braze.xml';
 export const BX_STR = "string";
 export const BX_INT = "integer";

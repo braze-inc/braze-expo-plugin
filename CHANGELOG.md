@@ -1,3 +1,14 @@
+## 5.2.0
+
+##### Added
+- Updates the sample app to use [Expo SDK 56](https://expo.dev/changelog/sdk-56).
+
+## 5.1.0
+
+#### Added
+- Configures iOS push entitlement automatically if `enableBrazeIosPush`, `enableBrazeIosRichPush`, or `enableBrazeIosPushStories` is true.
+  - Adds `iosPushEntitlementsMode` configuration to set the environment for iOS push notifications. Defaults to `development`.
+
 ## 5.0.0
 
 ##### Breaking
