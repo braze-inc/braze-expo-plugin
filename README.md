@@ -29,6 +29,22 @@ npx expo install @braze/expo-plugin
 }
 ```
 
+``` typescript
+// app.config.ts
+import withBraze from "@braze/expo-plugin/plugin";
+
+export default {
+  expo: {
+    plugins: [
+      withBraze({
+        enableBrazeIosPush: true,
+        enableFirebaseCloudMessaging: true,
+      }),
+    ],
+  },
+};
+```
+
 ``` shell
 npx expo prebuild
 ```

@@ -27,13 +27,10 @@ function warningForDeprecatedProps(props: ConfigProps | undefined) {
   );
 }
 
-const withBraze: ConfigPlugin<ConfigProps> = (config, _props) => {
-  const props: ConfigProps = _props ?? {};
+const withBraze: ConfigPlugin<ConfigProps> = (config, props = {}) => {
   warningForDeprecatedProps(props);
-
   config = withAndroidBrazeSdk(config, props);
   config = withIOSBrazeSdk(config, props);
-
   return config;
 };
 
@@ -43,4 +40,4 @@ export default createRunOncePlugin(
   withBraze,
   pkg.name,
   pkg.version
-);
+) as ConfigPlugin<ConfigProps>;

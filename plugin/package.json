@@ -4,6 +4,17 @@
   "description": "Config plugin for @braze/react-native-sdk package",
   "main": "build/withBraze.js",
   "types": "build/withBraze.d.ts",
+  "exports": {
+    ".": {
+      "types": "./build/withBraze.d.ts",
+      "default": "./build/withBraze.js"
+    },
+    "./plugin": {
+      "types": "./build/plugin.d.ts",
+      "default": "./build/plugin.js"
+    },
+    "./package.json": "./package.json"
+  },
   "sideEffects": false,
   "repository": {
     "type": "git",
