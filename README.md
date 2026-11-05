@@ -65,14 +65,6 @@ See [the Braze Developer Guide](https://www.braze.com/docs/developer_guide/sdk_i
 | 1.0.0 - 1.0.1     | >= 2.0.2               |
 | <= 0.6.0          | 1.38.0 - 1.41.0        |
 
-## Development
-
-To run the plugin's unit tests:
-
-```shell
-cd plugin
-yarn test
-```
 
 ## Contact
 

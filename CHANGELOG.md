@@ -1,3 +1,13 @@
+## 5.2.1
+
+##### Fixed
+- Fixes an Android [issue](https://github.com/braze-inc/braze-expo-plugin/pull/50) where Gradle configuration failed on Android Gradle Plugin 9+ with built-in Kotlin enabled. AGP 8 and older are unchanged.
+- Fixes missing TypeScript types in `ConfigProps` for the Android props `androidPushNotificationHtmlRenderingEnabled`, `androidNotificationSmallIcon`, `androidNotificationLargeIcon`, `androidNotificationAccentColor`, `androidFirebaseMessagingFallbackServiceEnabled`, and `androidFirebaseMessagingFallbackServiceClasspath`.
+
+##### Changed
+- Adds the following features to the sample app: an in-app messages section, SDK status, logout, and unregister push actions. This now matches the Braze React Native SDK sample app.
+- Updates the sample app to use Braze React Native SDK [`24.0.0`](https://github.com/braze-inc/braze-react-native-sdk/releases/tag/24.0.0).
+
 ## 5.2.0
 
 ##### Added
