@@ -1,3 +1,5 @@
+import type { ANDROID_CONFIG_MAP } from './brazeAndroidConstants';
+
 export type ConfigProps = {
   /**
    * @deprecated Set the Android API key at runtime via `Braze.initialize()` instead.
@@ -34,6 +36,33 @@ export type ConfigProps = {
   enableFirebaseCloudMessaging?: boolean;
   firebaseCloudMessagingSenderId?: string;
   androidHandlePushDeepLinksAutomatically?: boolean;
+  androidPushNotificationHtmlRenderingEnabled?: boolean;
+  /**
+   * Drawable resource reference, e.g. `"@drawable/ic_notification"`. The resource must
+   * already exist in the Android project; the plugin doesn't copy assets.
+   */
+  androidNotificationSmallIcon?: string;
+  /**
+   * Drawable resource reference, e.g. `"@drawable/ic_notification_large"`. The resource must
+   * already exist in the Android project; the plugin doesn't copy assets.
+   */
+  androidNotificationLargeIcon?: string;
+  /**
+   * Written to `braze.xml` as a `<color>` value, e.g. `"#ff112233"` (ARGB hex).
+   */
+  androidNotificationAccentColor?: string;
+  androidFirebaseMessagingFallbackServiceEnabled?: boolean;
+  /**
+   * Classpath of the app's own `FirebaseMessagingService`, e.g. `"expo.modules.notifications.service.ExpoFirebaseMessagingService"`.
+   * Only used when `androidFirebaseMessagingFallbackServiceEnabled` is `true`.
+   */
+  androidFirebaseMessagingFallbackServiceClasspath?: string;
   iosUseUUIDAsDeviceId?: boolean;
   iosForwardUniversalLinks?: boolean;
 };
+
+// Fails the build if `ANDROID_CONFIG_MAP` has a key that isn't declared in `ConfigProps`.
+type AssertNoMissingKeys<T extends [never]> = T;
+type _AndroidConfigMapKeysInConfigProps = AssertNoMissingKeys<
+  [Exclude<keyof typeof ANDROID_CONFIG_MAP, keyof ConfigProps>]
+>;

@@ -7,7 +7,7 @@ import com.braze.BrazeActivityLifecycleCallbackListener
 import com.braze.enums.BrazeSdkMetadata
 import java.util.EnumSet
 
-class BrazeApplicationLifecycleListener() : ApplicationLifecycleListener {
+class BrazeApplicationLifecycleListener : ApplicationLifecycleListener {
     override fun onCreate(application: Application) {
         super.onCreate(application)
         Braze.addSdkMetadata(

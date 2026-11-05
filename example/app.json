@@ -60,6 +60,7 @@
           "firebaseCloudMessagingSenderId": "531790618696",
           "androidHandlePushDeepLinksAutomatically": true,
           "androidNotificationAccentColor": "#ff112233",
+          "androidPushNotificationHtmlRenderingEnabled": true,
           "iosUseUUIDAsDeviceId": true,
           "iosForwardUniversalLinks": false
         }
@@ -69,7 +70,11 @@
         {
           "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location for tracking and geofences."
         }
-      ]
+      ],
+      "expo-asset",
+      "expo-font",
+      "expo-splash-screen",
+      "expo-web-browser"
     ],
     "extra": {
       "eas": {

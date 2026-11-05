@@ -1,15 +1,14 @@
 package expo.modules.adapters.braze
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.braze.reactbridge.BrazeReactUtils
 import expo.modules.core.interfaces.ReactActivityLifecycleListener
 
-class BrazeReactActivityLifecycleListener() : ReactActivityLifecycleListener {
+class BrazeReactActivityLifecycleListener : ReactActivityLifecycleListener {
     private var activity: Activity? = null
-    
+
     override fun onCreate(activity: Activity, savedInstanceState: Bundle?) {
         this.activity = activity
         BrazeReactUtils.populateInitialPushPayloadFromIntent(activity.intent)
