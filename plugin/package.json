@@ -1,6 +1,6 @@
 {
   "name": "@braze/expo-plugin",
-  "version": "5.2.1",
+  "version": "6.0.0",
   "description": "Config plugin for @braze/react-native-sdk package",
   "main": "build/withBraze.js",
   "types": "build/withBraze.d.ts",
@@ -36,7 +36,7 @@
     "expo-module-scripts": "^3.0.4"
   },
   "peerDependencies": {
-    "expo": ">=47.0.0"
+    "expo": ">=57.0.23"
   },
   "peerDependenciesMeta": {
     "expo": {

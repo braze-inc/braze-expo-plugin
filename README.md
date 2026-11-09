@@ -53,10 +53,11 @@ See [the Braze Developer Guide](https://www.braze.com/docs/developer_guide/sdk_i
 ## Version Support
 
 > [!NOTE]
-> This SDK has been tested with Expo version **56.0.6**.
+> This SDK has been tested with Expo version **58.0.19**.
 
 | Braze Expo Plugin | Braze React Native SDK |
 | ----------------- | ---------------------- |
+| >=6.0.0           | >= 24.0.0              |
 | >=5.0.0           | >= 19.2.0              |
 | >=4.0.0           | >= 19.1.0              |
 | >=3.0.0           | >= 13.1.0              |
