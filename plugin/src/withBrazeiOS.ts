@@ -1,6 +1,7 @@
 import { ConfigPlugin, withInfoPlist, withXcodeProject, withDangerousMod, withEntitlementsPlist } from "expo/config-plugins";
 
 import { ConfigProps } from "./types";
+import { withBrazeScene } from "./withBrazeScene";
 
 const fs = require('fs');
 const path = require('path');
@@ -361,5 +362,6 @@ export const withIOSBrazeSdk: ConfigPlugin<ConfigProps> = (config, props) => {
   config = withBrazeEntitlements(config, props);
   config = withBrazeXcodeProject(config, props);
   config = withBrazeDangerousMod(config, props);
+  config = withBrazeScene(config);
   return config;
 };

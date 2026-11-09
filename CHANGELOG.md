@@ -1,3 +1,13 @@
+## 6.0.0
+
+##### Breaking
+- Requires `expo` 57.0.23 or newer. Earlier Expo SDK versions do not include the scene delegate base class that this version depends on.
+- Requires Braze React Native SDK [24.0.0](https://github.com/braze-inc/braze-react-native-sdk/releases/tag/24.0.0) or newer, which adds `populateInitialPayloadFromNotificationResponse:`.
+  - This version also raises the minimum iOS version to 15.0.
+
+##### Fixed
+- Fixes an iOS issue where `Braze.getInitialPushPayload()` returned `null` on a cold start from a push tap when the app uses the UIKit scene life cycle.
+
 ## 5.2.1
 
 ##### Fixed
@@ -36,7 +46,7 @@
 
 ## 4.0.0
 
-##### Breaking 
+##### Breaking
 - This version requires [`19.0.0`](https://github.com/braze-inc/braze-react-native-sdk/releases/tag/19.0.0) of the Braze React Native SDK.
   - (Android) Fixed a memory leak in the data persistence layer.
   - (Android) Adds support for Braze.getInitialPushPayload() to handle push notification deep links when the app is launched from a terminated state. This resolves an issue where deep links from push notifications were not handled on Android when the app was cold started.

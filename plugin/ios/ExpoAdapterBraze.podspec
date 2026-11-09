@@ -15,9 +15,10 @@ Pod::Spec.new do |s|
   s.source         = { git: 'https://github.com/expo/config-plugins.git' }
   s.static_framework = true
 
+  s.dependency 'Expo'
   s.dependency 'ExpoModulesCore'
   s.dependency 'React-Core'
-  s.dependency 'braze-react-native-sdk'
+  s.dependency 'braze-react-native-sdk', '>= 24.0.0'
 
   # Swift/Objective-C compatibility
   s.pod_target_xcconfig = {
